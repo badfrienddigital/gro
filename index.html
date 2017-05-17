@@ -108,10 +108,10 @@ var LFO4 = audioContext.createOscillator();
 var LFO5 = audioContext.createOscillator();
 
 LFO1.type = 'triangle';
-LFO2.type = 'sawtooth';
-LFO3.type = 'sawtooth';
+LFO2.type = 'sine';
+LFO3.type = 'sine';
 LFO4.type = 'triangle';
-LFO5.type = 'sawtooth';
+LFO5.type = 'sine';
 
 LFO1.connect(volume1.gain);
 LFO2.connect(volume2.gain);

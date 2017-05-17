@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<!--
+open http://localhost:8000
+livereload ~/organ-egg/ -p 8000
+ios
+droidTest
+-->
+
+<!--
+https://badfrienddigital.github.io/organ-egg/
+-->
+
 <html lang="en">
 
 <head>
@@ -231,21 +242,21 @@ LFO5.frequency.value = 0.0243 * shift;
 
 
 
-    var mDelay = audioContext.createDelay();
-    mDelay.delayTime.value = 0.2;
-
-    var mFeedback = audioContext.createGain();
-    mFeedback.gain.value = 0.3;
-
-    var mFilter = audioContext.createBiquadFilter();
-    mFilter.frequency.value = 1000;
-
-    mDelay.connect(mFeedback);
-    mFeedback.connect(mFilter);
-    mFilter.connect(mDelay);
-
-		masterGain.connect(mDelay);
-		mDelay.connect(audioContext.destination);
+    // var mDelay = audioContext.createDelay();
+    // mDelay.delayTime.value = 0.2;
+    //
+    // var mFeedback = audioContext.createGain();
+    // mFeedback.gain.value = 0.3;
+    //
+    // var mFilter = audioContext.createBiquadFilter();
+    // mFilter.frequency.value = 1000;
+    //
+    // mDelay.connect(mFeedback);
+    // mFeedback.connect(mFilter);
+    // mFilter.connect(mDelay);
+    //
+		// masterGain.connect(mDelay);
+		// mDelay.connect(audioContext.destination);
 		masterGain.connect(audioContext.destination);
 
 

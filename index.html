@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Soft Punch</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+</head>
+
+<style>
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #B58B00;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {
+  background-color: #407060
+}
+
+.button:active {
+  background-color: #407060;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+
+<body>
+  <input class="button" id="beginner" type="button" value=">> PLAY <<" onclick="playIt()" />
+
+<script src="stereo-panner-node.min.js"></script>
+<script>
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+StereoPannerNode.polyfill();
+
+var audioContext = new AudioContext();
+var masterGain = audioContext.createGain();
+
+var volume1 = audioContext.createGain();
+var volume2 = audioContext.createGain();
+var volume3 = audioContext.createGain();
+var volume4 = audioContext.createGain();
+var volume5 = audioContext.createGain();
+
+var panner1 = audioContext.createStereoPanner();
+var panner2 = audioContext.createStereoPanner();
+var panner3 = audioContext.createStereoPanner();
+var panner4 = audioContext.createStereoPanner();
+var panner5 = audioContext.createStereoPanner();
+
+panner1.pan.value = 0;
+panner2.pan.value = 0.35;
+panner3.pan.value = -0.35;
+panner4.pan.value = 0.65;
+panner5.pan.value = -0.65;
+
+
+var filter1 = audioContext.createBiquadFilter();
+var filter2 = audioContext.createBiquadFilter();
+var filter3 = audioContext.createBiquadFilter();
+var filter4 = audioContext.createBiquadFilter();
+var filter5 = audioContext.createBiquadFilter();
+
+
+filter1.type = "lowpass";
+filter1.frequency.value = 1200;
+
+filter2.type = "lowpass";
+filter2.frequency.value = 1200;
+
+filter3.type = "highpass";
+filter3.frequency.value = 200;
+
+filter4.type = "highpass";
+filter4.frequency.value = 350;
+
+filter5.type = "highpass";
+filter5.frequency.value = 400;
+
+var LFO1 = audioContext.createOscillator();
+var LFO2 = audioContext.createOscillator();
+var LFO3 = audioContext.createOscillator();
+var LFO4 = audioContext.createOscillator();
+var LFO5 = audioContext.createOscillator();
+
+LFO1.type = 'triangle';
+LFO2.type = 'sawtooth';
+LFO3.type = 'sawtooth';
+LFO4.type = 'triangle';
+LFO5.type = 'sawtooth';
+
+LFO1.connect(volume1.gain);
+LFO2.connect(volume2.gain);
+LFO3.connect(volume3.gain);
+LFO4.connect(volume4.gain);
+LFO5.connect(volume5.gain);
+
+var organ1 = audioContext.createBufferSource();
+var organ2 = audioContext.createBufferSource();
+var organ3 = audioContext.createBufferSource();
+var organ4 = audioContext.createBufferSource();
+var organ5 = audioContext.createBufferSource();
+
+getSample('organ-low-2m.mp4', function play(buffer) {
+  organ1.buffer = buffer;
+  organ1.connect(filter1);
+  filter1.connect(volume1);
+  volume1.connect(panner1);
+  panner1.connect(masterGain);
+  organ1.loop = true;
+});
+
+getSample('organ-med-8m.mp4', function play(buffer) {
+  organ2.buffer = buffer;
+  organ2.connect(filter2);
+  filter2.connect(volume2);
+  volume2.connect(panner2);
+  panner2.connect(masterGain);
+  organ2.loop = true;
+});
+
+getSample('organ-hi-7m.mp4', function play(buffer) {
+  organ3.buffer = buffer;
+  organ3.connect(filter3);
+  filter3.connect(volume3);
+  volume3.connect(panner3);
+  panner3.connect(masterGain);
+  organ3.loop = true;
+});
+
+getSample('organ-hi-er-9m.mp4', function play(buffer) {
+  organ4.buffer = buffer;
+  organ4.connect(filter4);
+  filter4.connect(volume4);
+  volume4.connect(panner4);
+  panner4.connect(masterGain);
+  organ4.loop = true;
+});
+
+getSample('organ-hi-est-6m.mp4', function play(buffer) {
+  organ5.buffer = buffer;
+  organ5.connect(filter5);
+  filter5.connect(volume5);
+  volume5.connect(panner5);
+  panner5.connect(masterGain);
+  organ5.loop = true;
+});
+
+
+function getSample(url, cb) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url);
+  request.responseType = 'arraybuffer';
+  request.onload = function() {
+    audioContext.decodeAudioData(request.response, cb);
+  };
+  request.send();
+}
+
+
+// original tempo is 70 BPM
+// at 70 BPM, 4n = 857 ms
+// at 70 BPM, 1 measure = 3428 ms = 3.428 s
+// 6.856 = 2m
+// 10.284 = 3m
+// 13.712 = 4m
+
+var tempoShifts = [1, 0.95, 0.96, 0.98, 0.97, 0.99];
+var startTimes = [6.856, 0, 13.712, 0, 10.284];
+
+
+
+function shuffle(array) {
+  var i = 0,
+    j = 0,
+    temp = null;
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
+shuffle(startTimes);
+shuffle(tempoShifts);
+
+
+shift = tempoShifts[0];
+
+rand1 = startTimes[0] / shift;
+rand2 = startTimes[1] / shift;
+rand3 = startTimes[2] / shift;
+rand4 = startTimes[3] / shift;
+rand5 = startTimes[4] / shift;
+
+var del = 0.2;
+
+var startTime1 = audioContext.currentTime + rand1 + del;
+var startTime2 = audioContext.currentTime + rand2 + del;
+var startTime3 = audioContext.currentTime + rand3 + del;
+var startTime4 = audioContext.currentTime + rand4 + del;
+var startTime5 = audioContext.currentTime + rand5 + del;
+
+
+organ1.playbackRate.value = shift;
+organ2.playbackRate.value = shift;
+organ3.playbackRate.value = shift;
+organ4.playbackRate.value = shift;
+organ5.playbackRate.value = shift;
+
+LFO1.frequency.value = 0.073 * shift;
+LFO2.frequency.value = 0.0365 * shift;
+LFO3.frequency.value = 0.0209 * shift;
+LFO4.frequency.value = 0.0162 * shift;
+LFO5.frequency.value = 0.0243 * shift;
+
+
+
+    var mDelay = audioContext.createDelay();
+    mDelay.delayTime.value = 0.2;
+
+    var mFeedback = audioContext.createGain();
+    mFeedback.gain.value = 0.3;
+
+    var mFilter = audioContext.createBiquadFilter();
+    mFilter.frequency.value = 1000;
+
+    mDelay.connect(mFeedback);
+    mFeedback.connect(mFilter);
+    mFilter.connect(mDelay);
+
+		masterGain.connect(mDelay);
+		mDelay.connect(audioContext.destination);
+		masterGain.connect(audioContext.destination);
+
+
+
+function beginAll() {
+	LFO1.start(del);
+	LFO2.start(del);
+	LFO3.start(del);
+	LFO4.start(del);
+	LFO5.start(del);
+
+  organ1.start(startTime1);
+  organ2.start(startTime2);
+  organ3.start(startTime3);
+  organ4.start(startTime4);
+  organ5.start(startTime5);
+}
+
+
+
+//not possible to stop a node and restart it
+//might be possible to recycle a buffer
+//if not, maybe copy & store buffer for reuse?
+
+var audioInitiated = false;
+var muted = false;
+
+function playIt() {
+  if (audioInitiated === false) {
+    beginAll();
+    audioInitiated = true;
+  } else {
+    tog();
+  }
+}
+
+function tog() {
+  if (muted === false) {
+    masterGain.gain.value = 0;
+    muted = true;
+  } else {
+    masterGain.gain.value = 1;
+    muted = false;
+  }
+}
+
+</script>
+
+</body>
+</html>

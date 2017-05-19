@@ -674,7 +674,7 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
-  volume5.gain.value = 0.8;
+  volume5.gain.value = 0.65;
 
 
 
@@ -682,7 +682,7 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   organ6.connect(volume6pre);
   volume6pre.connect(volume6);
   volume6.connect(panner6);
-  panner6.connect(mdelay);
+  panner6.connect(filter6);
   filter6.connect(mdelay);
 
   organ6.loop = true;

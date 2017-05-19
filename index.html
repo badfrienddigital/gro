@@ -620,10 +620,14 @@ LFO4.type = 'triangle';
 LFO5.type = 'sine';
 
 LFO1.connect(volume1.gain);
+
 LFO2.connect(volume2.gain);
+
 LFO3.connect(volume3.gain);
 LFO3.connect(volume7.gain);
+
 LFO4.connect(volume4.gain);
+
 LFO5.connect(volume5.gain);
 LFO5.connect(volume6.gain);
 
@@ -677,7 +681,7 @@ getSample('organ-hi-7m.mp4', function play(buffer) {
 
     organ7.loop = true;
     organ7.detune.value = 1200;
-    volume7pre.gain.value = 0.09;
+    volume7pre.gain.value = 0.12;
 
 
 });
@@ -713,8 +717,7 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
 
   organ6.loop = true;
   organ6.detune.value = 1200;
-  volume6pre.gain.value = 0.09;
-
+  volume6pre.gain.value = 0.12;
 
 });
 
@@ -1011,7 +1014,7 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    delGain.gain.setTargetAtTime(0.16, nowTime1 + del, 0.12);
+    delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.45, nowTime1 + del, 0.12);
     audioInitiated = true;
   } else {
@@ -1031,7 +1034,7 @@ function tog() {
   else {
     reBuff();
     var nowTime1 = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0.16, nowTime1 + del, 0.12);
+    delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.45, nowTime1 + del, 0.12);
     muted = false;
   }

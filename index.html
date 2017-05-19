@@ -819,7 +819,7 @@ LFO5.frequency.value = 0.0243 * shift;
     masterGain.connect(mdelay);
 
     superMasterGain.connect(audioContext.destination);
-    superMasterGain.gain.value = 0.85;
+    superMasterGain.gain.value = 0;
 
 
 //
@@ -1016,6 +1016,7 @@ function playIt() {
     beginLFO();
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
+    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
     audioInitiated = true;
   } else {
     tog();

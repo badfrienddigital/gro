@@ -764,13 +764,13 @@ LFO5.frequency.value = 0.0243 * shift;
     // mcompressor.release.value = 0.55;
 
     var delGain = audioContext.createGain();
-    delGain.gain.value = 0.2;
+    delGain.gain.value = 0;
     var mfilter = audioContext.createBiquadFilter();
     mfilter.type = "highpass";
     mfilter.frequency.value = 400;
     mfilter.Q.value = 10;
     var mdelay = audioContext.createDelay();
-    mdelay.delayTime.value = 0;
+    mdelay.delayTime.value = 0.2;
     mdelay.connect(mfilter);
     mfilter.connect(delGain);
     delGain.connect(superMasterGain);

@@ -770,17 +770,17 @@ LFO5.frequency.value = 0.0243 * shift;
     mfilter.frequency.value = 400;
     mfilter.Q.value = 10;
     var mdelay = audioContext.createDelay();
-    mdelay.delayTime.value = 0.2;
+    mdelay.delayTime.value = 0;
     mdelay.connect(mfilter);
     mfilter.connect(delGain);
     delGain.connect(superMasterGain);
 
-    masterGain.gain.value = 0.9;
+    masterGain.gain.value = 0;
     masterGain.connect(superMasterGain);
     masterGain.connect(mdelay);
 
     superMasterGain.connect(audioContext.destination);
-    superMasterGain.gain.value = 0.8;
+    superMasterGain.gain.value = 0.75;
 
 
 //
@@ -963,6 +963,8 @@ function playIt() {
   if (audioInitiated === false) {
     beginOrg();
     beginLFO();
+    delGain.gain.setTargetAtTime(0.15, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.9, nowTime1 + del, 0.12);
     audioInitiated = true;
   } else {
     tog();
@@ -981,8 +983,8 @@ function tog() {
   else {
     reBuff();
     var nowTime1 = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0.1, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(1, nowTime1 + del, 0.12);
+    delGain.gain.setTargetAtTime(0.15, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.9, nowTime1 + del, 0.12);
     muted = false;
   }
 }

@@ -1025,8 +1025,8 @@ function playIt() {
 function tog() {
   if (muted === false) {
     var nowTime = audioContext.currentTime;
-    delGain.gain.linearRampToValueAtTime(0, nowTime + 0.07);
-    masterGain.gain.linearRampToValueAtTime(0, nowTime + 0.075);
+    delGain.gain.exponentialRampToValueAtTime(0, nowTime + 0.07);
+    masterGain.gain.exponentialRampToValueAtTime(0, nowTime + 0.075);
     muted = true;
     tempBuff();
     stopOrg();

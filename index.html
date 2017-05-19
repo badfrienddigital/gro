@@ -756,12 +756,12 @@ LFO3.frequency.value = 0.0209 * shift;
 LFO4.frequency.value = 0.0162 * shift;
 LFO5.frequency.value = 0.0243 * shift;
 
-    var mcompressor = audioContext.createDynamicsCompressor();
-    mcompressor.threshold.value = -15;
-    mcompressor.knee.value = 10;
-    mcompressor.ratio.value = 2.5;
-    mcompressor.attack.value = 0.1;
-    mcompressor.release.value = 0.55;
+    // var mcompressor = audioContext.createDynamicsCompressor();
+    // mcompressor.threshold.value = -15;
+    // mcompressor.knee.value = 10;
+    // mcompressor.ratio.value = 2.5;
+    // mcompressor.attack.value = 0.1;
+    // mcompressor.release.value = 0.55;
 
     var delGain = audioContext.createGain();
     delGain.gain.value = 0.2;
@@ -773,15 +773,15 @@ LFO5.frequency.value = 0.0243 * shift;
     mdelay.delayTime.value = 0.2;
     mdelay.connect(mfilter);
     mfilter.connect(delGain);
-    delGain.connect(mcompressor);
+    delGain.connect(superMasterGain);
 
     masterGain.gain.value = 0.9;
-    masterGain.connect(mcompressor);
+    masterGain.connect(superMasterGain);
     masterGain.connect(mdelay);
 
-
-		mcompressor.connect(superMasterGain);
     superMasterGain.connect(audioContext.destination);
+    superMasterGain.gain.value = 0.8;
+
 
 //
 // BEGIN PLAYBACK CONTROLS

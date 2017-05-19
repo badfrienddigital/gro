@@ -600,25 +600,25 @@ filter5Up.type = "lowpass";
 filter5Up.frequency.value = 2200;
 
 
-var LFO1 = audioContext.createOscillator();
-var LFO2 = audioContext.createOscillator();
-var LFO3 = audioContext.createOscillator();
-var LFO4 = audioContext.createOscillator();
-var LFO5 = audioContext.createOscillator();
-
-LFO1.type = 'triangle';
-LFO2.type = 'sine';
-LFO3.type = 'sine';
-LFO4.type = 'triangle';
-LFO5.type = 'sine';
-
-LFO1.connect(volume1.gain);
-LFO2.connect(volume2.gain);
-LFO3.connect(volume3.gain);
-LFO4.connect(volume4.gain);
-
-LFO5.connect(volume5.gain);
-LFO5.connect(volume5Up.gain);
+// var LFO1 = audioContext.createOscillator();
+// var LFO2 = audioContext.createOscillator();
+// var LFO3 = audioContext.createOscillator();
+// var LFO4 = audioContext.createOscillator();
+// var LFO5 = audioContext.createOscillator();
+//
+// LFO1.type = 'triangle';
+// LFO2.type = 'sine';
+// LFO3.type = 'sine';
+// LFO4.type = 'triangle';
+// LFO5.type = 'sine';
+//
+// LFO1.connect(volume1.gain);
+// LFO2.connect(volume2.gain);
+// LFO3.connect(volume3.gain);
+// LFO4.connect(volume4.gain);
+//
+// LFO5.connect(volume5.gain);
+// LFO5.connect(volume5Up.gain);
 
 var organ1 = audioContext.createBufferSource();
 var organ2 = audioContext.createBufferSource();
@@ -760,11 +760,11 @@ organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
 organ5Up.playbackRate.value = shift;
 
-LFO1.frequency.value = 0.073 * shift;
-LFO2.frequency.value = 0.0365 * shift;
-LFO3.frequency.value = 0.0209 * shift;
-LFO4.frequency.value = 0.0162 * shift;
-LFO5.frequency.value = 0.0243 * shift;
+// LFO1.frequency.value = 0.073 * shift;
+// LFO2.frequency.value = 0.0365 * shift;
+// LFO3.frequency.value = 0.0209 * shift;
+// LFO4.frequency.value = 0.0162 * shift;
+// LFO5.frequency.value = 0.0243 * shift;
 
     // var mcompressor = audioContext.createDynamicsCompressor();
     // mcompressor.threshold.value = -15;
@@ -818,13 +818,13 @@ function beginOrg() {
     dur5 = organ5.buffer.duration;
 }
 
-function beginLFO() {
-	LFO1.start(del);
-	LFO2.start(del);
-	LFO3.start(del);
-	LFO4.start(del);
-	LFO5.start(del);
-}
+// function beginLFO() {
+// 	LFO1.start(del);
+// 	LFO2.start(del);
+// 	LFO3.start(del);
+// 	LFO4.start(del);
+// 	LFO5.start(del);
+// }
 
 function stopOrg() {
   var nowTime = audioContext.currentTime;
@@ -966,7 +966,7 @@ function playIt() {
   if (audioInitiated === false) {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
-    beginLFO();
+    //beginLFO();
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);

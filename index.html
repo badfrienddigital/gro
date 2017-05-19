@@ -557,7 +557,7 @@ var volume5Up = audioContext.createGain();
 var volume5UpPre = audioContext.createGain();
 
 
-var panner1 = audioContext.createStereoPanner();
+// var panner1 = audioContext.createStereoPanner();
 var panner2 = audioContext.createStereoPanner();
 var panner3 = audioContext.createStereoPanner();
 var panner4 = audioContext.createStereoPanner();
@@ -565,7 +565,7 @@ var panner5 = audioContext.createStereoPanner();
 var panner5Up = audioContext.createStereoPanner();
 
 
-panner1.pan.value = 0;
+// panner1.pan.value = 0;
 panner2.pan.value = 0.35;
 panner3.pan.value = -0.35;
 panner4.pan.value = 0.75;
@@ -632,8 +632,8 @@ getSample('organ-low-2m.mp4', function play(buffer) {
   organ1.buffer = buffer;
   organ1.connect(filter1);
   filter1.connect(volume1);
-  volume1.connect(panner1);
-  panner1.connect(masterGain);
+  volume1.connect(masterGain);
+  // panner1.connect(masterGain);
   organ1.loop = true;
   volume1.gain.value = 0.9;
 
@@ -899,7 +899,6 @@ newOff2 = newOff2 * dur2;
 newOff3 = newOff3 * dur3;
 newOff4 = newOff4 * dur4;
 newOff5 = newOff5 * dur5;
-
 }
 
 function reBuff() {

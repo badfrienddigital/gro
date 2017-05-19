@@ -443,7 +443,6 @@ html {
   html { font-size: 18px; }
 }
 
-
 body {
       overflow: hidden;
       background: #bb6633;
@@ -458,7 +457,6 @@ body {
       height:100vh;
       position: absolute;
 }
-
 
 .sure {
     border-bottom: 150vh solid #664433;
@@ -496,6 +494,7 @@ body {
     background-color: #997777;
     overflow: hidden;
 }
+
 .button {
   position: absolute;
   left: calc(50vw - (1.8rem + 4ex)/2);
@@ -519,7 +518,6 @@ body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-
 .button:hover {
   font-size: 2.6rem;
   background-color: #4F3826
@@ -527,11 +525,11 @@ body {
 
 .button:active {
     font-size: 2.7rem;
-    font-weight: 800;
+    font-weight: 900;
     unicode-bidi: bidi-override;
     direction: rtl;
     color: #332211;
-  background-color: #BFAA9D;
+    background-color: #BFAA9D;
 }
 
 </style>
@@ -554,6 +552,9 @@ var volume2 = audioContext.createGain();
 var volume3 = audioContext.createGain();
 var volume4 = audioContext.createGain();
 var volume5 = audioContext.createGain();
+var volume6 = audioContext.createGain();
+var volume6pre = audioContext.createGain();
+
 
 var panner1 = audioContext.createStereoPanner();
 var panner2 = audioContext.createStereoPanner();
@@ -564,15 +565,15 @@ var panner5 = audioContext.createStereoPanner();
 panner1.pan.value = 0;
 panner2.pan.value = 0.35;
 panner3.pan.value = -0.35;
-panner4.pan.value = 0.65;
-panner5.pan.value = -0.65;
-
+panner4.pan.value = 0.75;
+panner5.pan.value = -0.75;
 
 var filter1 = audioContext.createBiquadFilter();
 var filter2 = audioContext.createBiquadFilter();
 var filter3 = audioContext.createBiquadFilter();
 var filter4 = audioContext.createBiquadFilter();
 var filter5 = audioContext.createBiquadFilter();
+var filter6 = audioContext.createBiquadFilter();
 
 
 filter1.type = "lowpass";
@@ -589,6 +590,9 @@ filter4.frequency.value = 350;
 
 filter5.type = "highpass";
 filter5.frequency.value = 400;
+
+filter6.type = "lowpass";
+filter6.frequency.value = 2200;
 
 var LFO1 = audioContext.createOscillator();
 var LFO2 = audioContext.createOscillator();
@@ -607,12 +611,14 @@ LFO2.connect(volume2.gain);
 LFO3.connect(volume3.gain);
 LFO4.connect(volume4.gain);
 LFO5.connect(volume5.gain);
+LFO5.connect(volume6.gain);
 
 var organ1 = audioContext.createBufferSource();
 var organ2 = audioContext.createBufferSource();
 var organ3 = audioContext.createBufferSource();
 var organ4 = audioContext.createBufferSource();
 var organ5 = audioContext.createBufferSource();
+var organ6 = audioContext.createBufferSource();
 
 getSample('organ-low-2m.mp4', function play(buffer) {
   organ1.buffer = buffer;
@@ -657,6 +663,19 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
+
+
+
+  organ6.buffer = organ5.buffer;
+  organ6.connect(volume6pre);
+  volume6pre.connect(volume6);
+  volume6.connect(filter6);
+  filter6.connect(mdelay);
+  organ6.loop = true;
+  organ6.detune.value = 1200;
+  volume6pre.gain.value = 0.2;
+
+
 });
 
 
@@ -679,7 +698,6 @@ function getSample(url, cb) {
 // 10.284 s = 3m
 // 13.712 s = 4m
 
-var tempoShifts = [1, 0.95, 0.96, 0.98, 0.97, 0.99];
 var startTimes = [6.856, 0, 13.712, 0, 10.284];
 
 
@@ -698,9 +716,12 @@ function shuffle(array) {
 }
 
 shuffle(startTimes);
-shuffle(tempoShifts);
 
-shift = tempoShifts[0];
+function getRandomArbitrary(min, max) {
+  return (Math.random() * (max - min)) + min;
+}
+
+shift = getRandomArbitrary(0.951, 1.001);
 
 rand1 = startTimes[0] / shift;
 rand2 = startTimes[1] / shift;
@@ -716,12 +737,12 @@ var startTime3 = audioContext.currentTime + rand3 + del;
 var startTime4 = audioContext.currentTime + rand4 + del;
 var startTime5 = audioContext.currentTime + rand5 + del;
 
-
 organ1.playbackRate.value = shift;
 organ2.playbackRate.value = shift;
 organ3.playbackRate.value = shift;
 organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
+organ6.playbackRate.value = shift;
 
 LFO1.frequency.value = 0.073 * shift;
 LFO2.frequency.value = 0.0365 * shift;
@@ -729,53 +750,211 @@ LFO3.frequency.value = 0.0209 * shift;
 LFO4.frequency.value = 0.0162 * shift;
 LFO5.frequency.value = 0.0243 * shift;
 
+    var mcompressor = audioContext.createDynamicsCompressor();
+    mcompressor.threshold.value = -15;
+    mcompressor.knee.value = 10;
+    mcompressor.ratio.value = 2.5;
+    mcompressor.attack.value = 0.1;
+    mcompressor.release.value = 0.55;
 
+    var delGain = audioContext.createGain();
+    delGain.gain.value = 0.2;
+    var mfilter = audioContext.createBiquadFilter();
+    mfilter.type = "highpass";
+    mfilter.frequency.value = 400;
+    mfilter.Q.value = 10;
+    var mdelay = audioContext.createDelay();
+    mdelay.delayTime.value = 0.2;
+    mdelay.connect(mfilter);
+    mfilter.connect(delGain);
+    delGain.connect(audioContext.destination);
 
-    // var mDelay = audioContext.createDelay();
-    // mDelay.delayTime.value = 0.2;
-    //
-    // var mFeedback = audioContext.createGain();
-    // mFeedback.gain.value = 0.3;
-    //
-    // var mFilter = audioContext.createBiquadFilter();
-    // mFilter.frequency.value = 1000;
-    //
-    // mDelay.connect(mFeedback);
-    // mFeedback.connect(mFilter);
-    // mFilter.connect(mDelay);
-    //
-		// masterGain.connect(mDelay);
-		// mDelay.connect(audioContext.destination);
-		masterGain.connect(audioContext.destination);
+    masterGain.gain.value = 0.9;
+    masterGain.connect(mcompressor);
 
+		mcompressor.connect(audioContext.destination);
+    mcompressor.connect(mdelay);
 
+//
+// BEGIN PLAYBACK CONTROLS
+//
 
-function beginAll() {
-	LFO1.start(del);
-	LFO2.start(del);
-	LFO3.start(del);
-	LFO4.start(del);
-	LFO5.start(del);
+// var startTimestamp = 0;
+
+var pauseTime = 0;
+var pauseTimeStamp = 0;
+var pauseTotal = 0;
+
+function beginOrg() {
+  //  startTimestamp = audioContext.currentTime;
 
   organ1.start(startTime1);
   organ2.start(startTime2);
   organ3.start(startTime3);
   organ4.start(startTime4);
   organ5.start(startTime5);
+  organ6.start(startTime5);
+
+    dur1 = organ1.buffer.duration;
+    dur2 = organ2.buffer.duration;
+    dur3 = organ3.buffer.duration;
+    dur4 = organ4.buffer.duration;
+    dur5 = organ5.buffer.duration;
 }
 
+function beginLFO() {
+	LFO1.start(del);
+	LFO2.start(del);
+	LFO3.start(del);
+	LFO4.start(del);
+	LFO5.start(del);
+}
+
+function stopOrg() {
+  var nowTime = audioContext.currentTime;
+  organ1.stop(nowTime + 0.1);
+  organ2.stop(nowTime + 0.1);
+  organ3.stop(nowTime + 0.1);
+  organ4.stop(nowTime + 0.1);
+  organ5.stop(nowTime + 0.1);
+  organ6.stop(nowTime + 0.1);
+}
+
+function tempBuff() {
+
+temp1 = organ1.buffer;
+temp2 = organ2.buffer;
+temp3 = organ3.buffer;
+temp4 = organ4.buffer;
+temp5 = organ5.buffer;
+
+pauseTimeStamp = audioContext.currentTime;
+
+var nowTime = audioContext.currentTime;
+
+// elapsed = nowTime - startTimestamp;
+//elapsed since last play();
 
 
-//not possible to stop a node and restart it
-//might be possible to recycle a buffer
-//if not, maybe copy & store buffer for reuse?
+totalElapsed = nowTime - pauseTotal;
+//total time played
+
+
+// the following will at *least* create an initial
+// delay of "del" (0.2)
+// and it will add any remaining delay from startTimes
+
+newStart1 = startTime1 - totalElapsed;
+newStart1 = Math.max(del,newStart1);
+
+newStart2 = startTime2 - totalElapsed;
+newStart2 = Math.max(del,newStart2);
+
+newStart3 = startTime3 - totalElapsed;
+newStart3 = Math.max(del,newStart3);
+
+newStart4 = startTime4 - totalElapsed;
+newStart4 = Math.max(del,newStart4);
+
+newStart5 = startTime5 - totalElapsed;
+newStart5 = Math.max(del,newStart5);
+
+console.log("5:" + newStart5 + "1:" + newStart1);
+
+timesPlayed1 = (totalElapsed - startTime1) / dur1;
+timesPlayed2 = (totalElapsed - startTime2) / dur2;
+timesPlayed3 = (totalElapsed - startTime3) / dur3;
+timesPlayed4 = (totalElapsed - startTime4) / dur4;
+timesPlayed5 = (totalElapsed - startTime5) / dur5;
+
+timesPlayed1 = timesPlayed1 - Math.trunc(timesPlayed1);
+timesPlayed2 = timesPlayed2 - Math.trunc(timesPlayed2);
+timesPlayed3 = timesPlayed3 - Math.trunc(timesPlayed3);
+timesPlayed4 = timesPlayed4 - Math.trunc(timesPlayed4);
+timesPlayed5 = timesPlayed5 - Math.trunc(timesPlayed5);
+
+// make anything less than 0 into 0
+
+newOff1 = Math.max(0,timesPlayed1);
+newOff2 = Math.max(0,timesPlayed2);
+newOff3 = Math.max(0,timesPlayed3);
+newOff4 = Math.max(0,timesPlayed4);
+newOff5 = Math.max(0,timesPlayed5);
+
+newOff1 = newOff1 * dur1;
+newOff2 = newOff2 * dur2;
+newOff3 = newOff3 * dur3;
+newOff4 = newOff4 * dur4;
+newOff5 = newOff5 * dur5;
+
+}
+
+function reBuff() {
+
+var nowTime = audioContext.currentTime;
+pauseTime = nowTime - pauseTimeStamp;
+pauseTotal = pauseTotal + pauseTime;
+
+// console.log("total time paused:" + pauseTotal);
+
+organ1 = audioContext.createBufferSource();
+organ2 = audioContext.createBufferSource();
+organ3 = audioContext.createBufferSource();
+organ4 = audioContext.createBufferSource();
+organ5 = audioContext.createBufferSource();
+organ6 = audioContext.createBufferSource();
+
+  organ1.buffer = temp1;
+  organ2.buffer = temp2;
+  organ3.buffer = temp3;
+  organ4.buffer = temp4;
+  organ5.buffer = temp5;
+  organ6.buffer = temp5;
+
+  organ1.loop = true;
+  organ2.loop = true;
+  organ3.loop = true;
+  organ4.loop = true;
+  organ5.loop = true;
+  organ6.loop = true;
+
+  organ1.playbackRate.value = shift;
+  organ2.playbackRate.value = shift;
+  organ3.playbackRate.value = shift;
+  organ4.playbackRate.value = shift;
+  organ5.playbackRate.value = shift;
+  organ6.playbackRate.value = shift;
+
+  organ1.connect(filter1);
+  organ2.connect(filter2);
+  organ3.connect(filter3);
+  organ4.connect(filter4);
+  organ5.connect(filter5);
+  organ6.connect(volume6);
+
+  newStart1 = newStart1 + nowTime;
+  newStart2 = newStart2 + nowTime;
+  newStart3 = newStart3 + nowTime;
+  newStart4 = newStart4 + nowTime;
+  newStart5 = newStart5 + nowTime;
+
+  organ1.start(newStart1, newOff1);
+  organ2.start(newStart2, newOff2);
+  organ3.start(newStart3, newOff3);
+  organ4.start(newStart4, newOff4);
+  organ5.start(newStart5, newOff5);
+  organ6.start(newStart5, newOff5);
+  // startTimestamp = audioContext.currentTime;
+}
+
 
 var audioInitiated = false;
 var muted = false;
 
 function playIt() {
   if (audioInitiated === false) {
-    beginAll();
+    beginOrg();
+    beginLFO();
     audioInitiated = true;
   } else {
     tog();
@@ -784,10 +963,18 @@ function playIt() {
 
 function tog() {
   if (muted === false) {
-    masterGain.gain.value = 0;
+    var nowTime = audioContext.currentTime;
+    delGain.gain.linearRampToValueAtTime(0, nowTime + 0.07);
+    masterGain.gain.linearRampToValueAtTime(0, nowTime + 0.075);
     muted = true;
-  } else {
-    masterGain.gain.value = 1;
+    tempBuff();
+    stopOrg();
+  }
+  else {
+    reBuff();
+    var nowTime1 = audioContext.currentTime;
+    delGain.gain.setTargetAtTime(0.1, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(1, nowTime1 + del, 0.12);
     muted = false;
   }
 }

@@ -964,8 +964,8 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    delGain.gain.setTargetAtTime(0.15, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
+    delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.45, nowTime1 + del, 0.12);
     audioInitiated = true;
   } else {
     tog();
@@ -984,8 +984,8 @@ function tog() {
   else {
     reBuff();
     var nowTime1 = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0.15, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
+    delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.45, nowTime1 + del, 0.12);
     muted = false;
   }
 }

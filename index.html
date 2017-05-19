@@ -1027,6 +1027,7 @@ function tog() {
     var nowTime = audioContext.currentTime;
     delGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
     masterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
+    superMasterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
     muted = true;
     tempBuff();
     stopOrg();
@@ -1036,6 +1037,7 @@ function tog() {
     var nowTime1 = audioContext.currentTime;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
+    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
     muted = false;
   }
 }

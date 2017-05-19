@@ -624,7 +624,7 @@ LFO1.connect(volume1.gain);
 LFO2.connect(volume2.gain);
 
 LFO3.connect(volume3.gain);
-LFO3.connect(volume7.gain);
+// LFO3.connect(volume7.gain);
 
 LFO4.connect(volume4.gain);
 
@@ -786,7 +786,7 @@ organ3.playbackRate.value = shift;
 organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
 organ6.playbackRate.value = shift;
-organ7.playbackRate.value = shift;
+// organ7.playbackRate.value = shift;
 
 
 LFO1.frequency.value = 0.073 * shift;
@@ -819,7 +819,7 @@ LFO5.frequency.value = 0.0243 * shift;
     masterGain.connect(mdelay);
 
     superMasterGain.connect(audioContext.destination);
-    superMasterGain.gain.value = 0.8;
+    superMasterGain.gain.value = 0.85;
 
 
 //

@@ -633,6 +633,8 @@ var organ3 = audioContext.createBufferSource();
 var organ4 = audioContext.createBufferSource();
 var organ5 = audioContext.createBufferSource();
 var organ6 = audioContext.createBufferSource();
+var organ7 = audioContext.createBufferSource();
+
 
 getSample('organ-low-2m.mp4', function play(buffer) {
   organ1.buffer = buffer;
@@ -669,13 +671,13 @@ getSample('organ-hi-7m.mp4', function play(buffer) {
     organ7.buffer = organ3.buffer;
     organ7.connect(volume7pre);
     volume7pre.connect(volume7);
-    volume7.connect(panner7);
-    panner7.connect(filter7);
-    filter7.connect(mdelay);
+    volume7.connect(filter7);
+    filter7.connect(panner7);
+    panner7.connect(mdelay);
 
     organ7.loop = true;
     organ7.detune.value = 1200;
-    volume7pre.gain.value = 0.05;
+    volume7pre.gain.value = 0.09;
 
 
 });
@@ -705,13 +707,13 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   organ6.buffer = organ5.buffer;
   organ6.connect(volume6pre);
   volume6pre.connect(volume6);
-  volume6.connect(panner6);
-  panner6.connect(filter6);
-  filter6.connect(mdelay);
+  volume6.connect(filter6);
+  filter6.connect(panner6);
+  panner6.connect(mdelay);
 
   organ6.loop = true;
   organ6.detune.value = 1200;
-  volume6pre.gain.value = 0.05;
+  volume6pre.gain.value = 0.09;
 
 
 });
@@ -814,7 +816,7 @@ LFO5.frequency.value = 0.0243 * shift;
     masterGain.connect(mdelay);
 
     superMasterGain.connect(audioContext.destination);
-    superMasterGain.gain.value = 0.75;
+    superMasterGain.gain.value = 0.7;
 
 
 //
@@ -973,6 +975,7 @@ organ7 = audioContext.createBufferSource();
   organ4.playbackRate.value = shift;
   organ5.playbackRate.value = shift;
   organ6.playbackRate.value = shift;
+  organ7.playbackRate.value = shift;
 
   organ1.connect(filter1);
   organ2.connect(filter2);

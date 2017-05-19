@@ -546,6 +546,7 @@ StereoPannerNode.polyfill();
 
 var audioContext = new AudioContext();
 var masterGain = audioContext.createGain();
+var superMasterGain = audioContext.createGain();
 
 var volume1 = audioContext.createGain();
 var volume2 = audioContext.createGain();
@@ -561,12 +562,15 @@ var panner2 = audioContext.createStereoPanner();
 var panner3 = audioContext.createStereoPanner();
 var panner4 = audioContext.createStereoPanner();
 var panner5 = audioContext.createStereoPanner();
+var panner6 = audioContext.createStereoPanner();
+
 
 panner1.pan.value = 0;
 panner2.pan.value = 0.35;
 panner3.pan.value = -0.35;
 panner4.pan.value = 0.75;
 panner5.pan.value = -0.75;
+panner6.pan.value = 0.85;
 
 var filter1 = audioContext.createBiquadFilter();
 var filter2 = audioContext.createBiquadFilter();
@@ -669,8 +673,10 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   organ6.buffer = organ5.buffer;
   organ6.connect(volume6pre);
   volume6pre.connect(volume6);
-  volume6.connect(filter6);
+  volume6.connect(panner6);
+  panner6.connect(mdelay);
   filter6.connect(mdelay);
+
   organ6.loop = true;
   organ6.detune.value = 1200;
   volume6pre.gain.value = 0.2;
@@ -767,13 +773,15 @@ LFO5.frequency.value = 0.0243 * shift;
     mdelay.delayTime.value = 0.2;
     mdelay.connect(mfilter);
     mfilter.connect(delGain);
-    delGain.connect(audioContext.destination);
+    delGain.connect(mcompressor);
 
     masterGain.gain.value = 0.9;
     masterGain.connect(mcompressor);
+    masterGain.connect(mdelay);
 
-		mcompressor.connect(audioContext.destination);
-    mcompressor.connect(mdelay);
+
+		mcompressor.connect(superMasterGain);
+    superMasterGain.connect(audioContext.destination);
 
 //
 // BEGIN PLAYBACK CONTROLS

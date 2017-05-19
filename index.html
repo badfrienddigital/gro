@@ -1025,8 +1025,8 @@ function playIt() {
 function tog() {
   if (muted === false) {
     var nowTime = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0, 0, 0.12);
-    masterGain.gain.setTargetAtTime(0, 0, 0.12);
+    delGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
+    masterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
     muted = true;
     tempBuff();
     stopOrg();

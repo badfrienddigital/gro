@@ -631,6 +631,8 @@ getSample('organ-low-2m.mp4', function play(buffer) {
   volume1.connect(panner1);
   panner1.connect(masterGain);
   organ1.loop = true;
+  volume1.gain.value = 1;
+
 });
 
 getSample('organ-med-8m.mp4', function play(buffer) {
@@ -640,6 +642,8 @@ getSample('organ-med-8m.mp4', function play(buffer) {
   volume2.connect(panner2);
   panner2.connect(masterGain);
   organ2.loop = true;
+  volume2.gain.value = 0.9;
+
 });
 
 getSample('organ-hi-7m.mp4', function play(buffer) {
@@ -649,6 +653,7 @@ getSample('organ-hi-7m.mp4', function play(buffer) {
   volume3.connect(panner3);
   panner3.connect(masterGain);
   organ3.loop = true;
+  volume3.gain.value = 0.8;
 });
 
 getSample('organ-hi-er-9m.mp4', function play(buffer) {
@@ -658,6 +663,8 @@ getSample('organ-hi-er-9m.mp4', function play(buffer) {
   volume4.connect(panner4);
   panner4.connect(masterGain);
   organ4.loop = true;
+  volume4.gain.value = 0.8;
+
 });
 
 getSample('organ-hi-est-6m.mp4', function play(buffer) {
@@ -667,6 +674,7 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
+  volume5.gain.value = 0.8;
 
 
 

@@ -547,6 +547,10 @@ StereoPannerNode.polyfill();
 var audioContext = new AudioContext();
 var masterGain = audioContext.createGain();
 var superMasterGain = audioContext.createGain();
+var masterFilterA = audioContext.createBiquadFilter();
+var masterFilterB = audioContext.createBiquadFilter();
+var preSuperMasterGain = audioContext.createGain();
+
 
 var volume1 = audioContext.createGain();
 var volume2 = audioContext.createGain();
@@ -705,7 +709,7 @@ function getSample(url, cb) {
   request.send();
 }
 
-
+//
 // original tempo is 70 BPM
 // at 70 BPM
 // 4n = 857 ms
@@ -713,10 +717,9 @@ function getSample(url, cb) {
 // 6.856 s = 2m
 // 10.284 s = 3m
 // 13.712 s = 4m
+//
 
 var startTimes = [6.856, 0, 13.712, 0, 10.284];
-
-
 
 function shuffle(array) {
   var i = 0,
@@ -783,14 +786,35 @@ organ5Up.playbackRate.value = shift;
     mdelay.delayTime.value = 0.2;
     mdelay.connect(mfilter);
     mfilter.connect(delGain);
-    delGain.connect(superMasterGain);
+    delGain.connect(preSuperMasterGain);
 
     masterGain.gain.value = 0;
-    masterGain.connect(superMasterGain);
+    masterGain.connect(preSuperMasterGain);
     masterGain.connect(mdelay);
+
+    preSuperMasterGain.connect(masterFilterA);
+    preSuperMasterGain.gain.value = 0.95;
+
+    masterFilterA.type = "lowshelf";
+    masterFilterA.frequency.value = 250;
+    masterFilterA.gain.value = -5;
+    masterFilterA.connect(superMasterGain);
+
+    masterFilterB.type = "lowshelf";
+    masterFilterB.frequency.value = 150;
+    masterFilterB.gain.value = -10;
+    masterFilterB.connect(superMasterGain);
 
     superMasterGain.connect(audioContext.destination);
     superMasterGain.gain.value = 0;
+
+
+
+
+
+
+
+
 
 
 //

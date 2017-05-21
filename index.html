@@ -709,6 +709,12 @@ var organ4 = audioContext.createBufferSource();
 var organ5 = audioContext.createBufferSource();
 var organ5Up = audioContext.createBufferSource();
 
+//
+// provide both 41k and 48k samplerate
+// 41k mp4 currently at 16 bit; change to 24?
+//
+
+
 getSample('organ-low-2m.mp4', function play(buffer) {
   organ1.buffer = buffer;
   organ1.connect(filter1);
@@ -1225,8 +1231,8 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    // var ORG = document.getElementById("beginner");
-    // ORG.value = audioContext.sampleRate;
+    var ORG = document.getElementById("beginner");
+    ORG.value = audioContext.sampleRate;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);

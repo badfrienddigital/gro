@@ -1068,8 +1068,8 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    // var ORG = document.getElementById("beginner");
-    // ORG.value = audioContext.sampleRate;
+    var ORG = document.getElementById("beginner");
+    ORG.value = audioContext.sampleRate;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);

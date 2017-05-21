@@ -614,7 +614,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext({latencyHint: 'playback'});
 }
 
-var context = audioContext;
 
 StereoPannerNode.polyfill();
 ConstantSourceNode.polyfill();
@@ -622,6 +621,7 @@ ConstantSourceNode.polyfill();
 var masterGain = audioContext.createGain();
 var superMasterGain = audioContext.createGain();
 var masterFilterA = audioContext.createBiquadFilter();
+var masterFilterB = audioContext.createBiquadFilter();
 var preSuperMasterGain = audioContext.createGain();
 
 var volume1 = audioContext.createGain();
@@ -632,12 +632,14 @@ var volume5 = audioContext.createGain();
 var volume5Up = audioContext.createGain();
 var volume5UpPre = audioContext.createGain();
 
+
 // var panner1 = audioContext.createStereoPanner();
 var panner2 = audioContext.createStereoPanner();
 var panner3 = audioContext.createStereoPanner();
 var panner4 = audioContext.createStereoPanner();
 var panner5 = audioContext.createStereoPanner();
 var panner5Up = audioContext.createStereoPanner();
+
 
 // panner1.pan.value = 0;
 panner2.pan.value = 0.35;
@@ -646,12 +648,14 @@ panner4.pan.value = 0.75;
 panner5.pan.value = -0.75;
 panner5Up.pan.value = 0.85;
 
+
 var filter1 = audioContext.createBiquadFilter();
 var filter2 = audioContext.createBiquadFilter();
 var filter3 = audioContext.createBiquadFilter();
 var filter4 = audioContext.createBiquadFilter();
 var filter5 = audioContext.createBiquadFilter();
 var filter5Up = audioContext.createBiquadFilter();
+
 
 filter1.type = "lowpass";
 filter1.frequency.value = 1200;
@@ -670,6 +674,7 @@ filter5.frequency.value = 400;
 
 filter5Up.type = "lowpass";
 filter5Up.frequency.value = 2200;
+
 
 var LFO1 = audioContext.createOscillator();
 var LFO2 = audioContext.createOscillator();
@@ -843,164 +848,12 @@ LFO2.frequency.value = 0.0365 * shift;
 // LFO4.frequency.value = 0.0162 * shift;
 // LFO5.frequency.value = 0.0243 * shift;
 
-//
-// Schroeder Reverb (aka Freeverb)
-// initial JS implementation by Yotam Mann in TONE.js
-// https://github.com/Tonejs/Tone.js
-//
-
-// Lowpass Comb Filter
-
-function LowpassCombFilter (context) {
-  var node = context.createDelay(1);
-  var output = context.createBiquadFilter();
-
-  // this magic number seems to fix everything in Chrome 53
-  // see https://github.com/livejs/freeverb/issues/1#issuecomment-249080213
-
-  output.Q.value = -3.0102999566398125;
-
-  output.type = 'lowpass';
-  node.dampening = output.frequency;
-
-  var feedback = context.createGain();
-  node.resonance = feedback.gain;
-
-  node.connect(output);
-  output.connect(feedback);
-  feedback.connect(node);
-
-  node.dampening.value = 3000;
-  node.delayTime.value = 0.1;
-  node.resonance.value = 0.5;
-
-  return node;
-}
-
-// tune the Freeverb
-
-var combFilterTunings = [1557 / 44100, 1617 / 44100, 1491 / 44100, 1422 / 44100, 1277 / 44100, 1356 / 44100, 1188 / 44100, 1116 / 44100];
-var allpassFilterFrequencies = [225, 556, 441, 341];
-
-// create the Freeverb
-
-function Freeverb (audioContext) {
-  var node = audioContext.createGain();
-  node.channelCountMode = 'explicit';
-  node.channelCount = 2;
-
-  var output = audioContext.createGain();
-  var merger = audioContext.createChannelMerger(2);
-  var splitter = audioContext.createChannelSplitter(2);
-  var highpass = audioContext.createBiquadFilter();
-  highpass.type = 'highpass';
-  highpass.frequency.value = 200;
-
-  var wet = audioContext.createGain();
-  var dry = audioContext.createGain();
-
-  node.connect(dry);
-  node.connect(wet);
-  wet.connect(splitter);
-  merger.connect(highpass);
-  highpass.connect(output);
-  dry.connect(output);
-
-  var combFilters = [];
-  var allpassFiltersL = [];
-  var allpassFiltersR = [];
-  var roomSize = 0.8;
-  var dampening = 3000;
-
-  // make the allpass filters on the right
-  for (var l = 0; l < allpassFilterFrequencies.length; l++) {
-    var allpassL = audioContext.createBiquadFilter();
-    allpassL.type = 'allpass';
-    allpassL.frequency.value = allpassFilterFrequencies[l];
-    allpassFiltersL.push(allpassL);
-
-    if (allpassFiltersL[l - 1]) {
-      allpassFiltersL[l - 1].connect(allpassL);
-    }
-  }
-
-  // make the allpass filters on the left
-  for (var r = 0; r < allpassFilterFrequencies.length; r++) {
-    var allpassR = audioContext.createBiquadFilter();
-    allpassR.type = 'allpass';
-    allpassR.frequency.value = allpassFilterFrequencies[r];
-    allpassFiltersR.push(allpassR);
-
-    if (allpassFiltersR[r - 1]) {
-      allpassFiltersR[r - 1].connect(allpassR);
-    }
-  }
-
-  allpassFiltersL[allpassFiltersL.length - 1].connect(merger, 0, 0);
-  allpassFiltersR[allpassFiltersR.length - 1].connect(merger, 0, 1);
-
-  // make the comb filters
-  for (var c = 0; c < combFilterTunings.length; c++) {
-    var lfpf = LowpassCombFilter(audioContext);
-    lfpf.delayTime.value = combFilterTunings[c];
-    if (c < combFilterTunings.length / 2) {
-      splitter.connect(lfpf, 0);
-      lfpf.connect(allpassFiltersL[0]);
-    } else {
-      splitter.connect(lfpf, 1);
-      lfpf.connect(allpassFiltersR[0]);
-    }
-    combFilters.push(lfpf);
-  }
-
-  Object.defineProperties(node, {
-    roomSize: {
-      get: function () {
-        return roomSize;
-      },
-      set: function (value) {
-        roomSize = value;
-        refreshFilters();
-      }
-    },
-    dampening: {
-      get: function () {
-        return dampening;
-      },
-
-      set: function (value) {
-        dampening = value;
-        refreshFilters();
-      }
-    }
-  });
-
-  refreshFilters();
-
-  node.connect = output.connect.bind(output);
-  node.disconnect = output.disconnect.bind(output);
-  node.wet = wet.gain;
-  node.dry = dry.gain;
-
-  // expose combFilters for direct automation
-  node.combFilters = combFilters;
-
-  return node;
-
-  // scoped
-
-  function refreshFilters () {
-    for (var i = 0; i < combFilters.length; i++) {
-      combFilters[i].resonance.value = roomSize;
-      combFilters[i].dampening.value = dampening;
-    }
-  }
-}
-
-
-//
-//
-//
+    // var mcompressor = audioContext.createDynamicsCompressor();
+    // mcompressor.threshold.value = -15;
+    // mcompressor.knee.value = 10;
+    // mcompressor.ratio.value = 2.5;
+    // mcompressor.attack.value = 0.1;
+    // mcompressor.release.value = 0.55;
 
     var delGain = audioContext.createGain();
     delGain.gain.value = 0;
@@ -1024,15 +877,12 @@ function Freeverb (audioContext) {
     masterFilterA.type = "lowshelf";
     masterFilterA.frequency.value = 250;
     masterFilterA.gain.value = -5;
+    masterFilterA.connect(superMasterGain);
 
-    var mReverb = Freeverb(audioContext);
-    masterFilterA.connect(mReverb);
-
-    mReverb.roomSize = 0.9;
-    mReverb.dampening = 3500;
-    mReverb.wet.value = 0.5;
-    mReverb.dry.value = 1;
-    mReverb.connect(superMasterGain);
+    masterFilterB.type = "lowshelf";
+    masterFilterB.frequency.value = 150;
+    masterFilterB.gain.value = -10;
+    masterFilterB.connect(superMasterGain);
 
     superMasterGain.connect(audioContext.destination);
     superMasterGain.gain.value = 0;
@@ -1061,7 +911,7 @@ function beginOrg() {
   organ3.start(startTime3);
   organ4.start(startTime4);
   organ5.start(startTime5);
-  organ5Up.start(startTime5);
+//  organ5Up.start(startTime5);
 
 
     dur1 = organ1.buffer.duration;
@@ -1206,7 +1056,7 @@ organ5Up = audioContext.createBufferSource();
   organ3.start(newStart3, newOff3);
   organ4.start(newStart4, newOff4);
   organ5.start(newStart5, newOff5);
-  organ5Up.start(newStart5, newOff5);
+//  organ5Up.start(newStart5, newOff5);
 }
 
 
@@ -1218,8 +1068,8 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    var ORG = document.getElementById("beginner");
-    ORG.value = audioContext.sampleRate;
+    // var ORG = document.getElementById("beginner");
+    // ORG.value = audioContext.sampleRate;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);

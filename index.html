@@ -540,7 +540,6 @@ body {
   <div class="sure"></div>
   <input class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
 <script src="stereo-panner-node.min.js"></script>
-<script src="constant-source-node.min.js"></script>
 
 <script>
 
@@ -604,7 +603,6 @@ var BrowserDetect = {
 };
 BrowserDetect.init();
 
-
 if (BrowserDetect.browser === "Safari") {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
@@ -617,7 +615,6 @@ var audioContext = new AudioContext({latencyHint: 'playback'});
 var context = audioContext;
 
 StereoPannerNode.polyfill();
-ConstantSourceNode.polyfill();
 
 var masterGain = audioContext.createGain();
 var superMasterGain = audioContext.createGain();
@@ -671,31 +668,39 @@ filter5.frequency.value = 400;
 filter5Up.type = "lowpass";
 filter5Up.frequency.value = 2200;
 
+
 var LFO1 = audioContext.createOscillator();
 var LFO2 = audioContext.createOscillator();
-
 
 LFO1.type = 'triangle';
 LFO2.type = 'sine';
 
-var constantNode1 = audioContext.createConstantSource();
-constantNode1.offset.value = 0.8;
-var constantNode2 = audioContext.createConstantSource();
-constantNode2.offset.value = 0.9;
-var constantNode3 = audioContext.createConstantSource();
-constantNode3.offset.value = 1.5;
+var LFOgain1 = audioContext.createGain();
+var LFOgain2 = audioContext.createGain();
+var LFOgain3 = audioContext.createGain();
+var LFOgain4 = audioContext.createGain();
+var LFOgain5 = audioContext.createGain();
 
-LFO1.connect(volume1.gain);
-LFO1.connect(constantNode1.offset);
-LFO1.connect(constantNode3.offset);
+LFOgain1.gain.value = 0.3;
+LFOgain2.gain.value = 0.15;
+LFOgain3.gain.value = 0.2;
+LFOgain4.gain.value = 0.4;
+LFOgain5.gain.value = 0.3;
 
-LFO2.connect(constantNode2.offset);
-LFO2.connect(volume5.gain);
-LFO2.connect(volume5Up.gain);
+LFO1.connect(LFOgain1);
+LFO1.connect(LFOgain2);
+LFO1.connect(LFOgain4);
 
-constantNode1.connect(volume2.gain);
-constantNode2.connect(volume3.gain);
-constantNode3.connect(volume4.gain);
+LFO2.connect(LFOgain3);
+LFO2.connect(LFOgain5);
+
+LFOgain1.connect(volume1.gain);
+LFOgain2.connect(volume2.gain);
+LFOgain3.connect(volume3.gain);
+LFOgain4.connect(volume4.gain);
+LFOgain5.connect(volume5.gain);
+LFOgain5.connect(volume5Up.gain);
+
 
 var organ1 = audioContext.createBufferSource();
 var organ2 = audioContext.createBufferSource();
@@ -763,15 +768,14 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   filter5Up.connect(panner5Up);
   panner5Up.connect(mdelay);
   organ5Up.loop = true;
-  volume5UpPre.gain.value = 0.12;
+  volume5UpPre.gain.value = 0.18;
 
-if (BrowserDetect.browser === "Safari") {}
-else {
+if("detune" in AudioBufferSourceNode) {
   organ5Up.detune.value = 1200;
 }
+else {}
 
 });
-
 
 function getSample(url, cb) {
   var request = new XMLHttpRequest();
@@ -837,15 +841,18 @@ organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
 organ5Up.playbackRate.value = shift;
 
-LFO1.frequency.value = 0.073 * shift;
-LFO2.frequency.value = 0.0365 * shift;
+LFO1.frequency.value = 0.0162 * shift;
+LFO2.frequency.value = 0.0209 * shift;
+
+// LFO1.frequency.value = 0.073 * shift;
+// LFO2.frequency.value = 0.0365 * shift;
 // LFO3.frequency.value = 0.0209 * shift;
 // LFO4.frequency.value = 0.0162 * shift;
 // LFO5.frequency.value = 0.0243 * shift;
 
 //
-// Schroeder Reverb (aka Freeverb)
-// initial JS implementation by Yotam Mann in TONE.js
+// cheap, Schroeder-style Reverb, called "Freeverb"
+// JS implementation by Yotam Mann in TONE.js
 // https://github.com/Tonejs/Tone.js
 //
 
@@ -1019,7 +1026,7 @@ function Freeverb (audioContext) {
     masterGain.connect(mdelay);
 
     preSuperMasterGain.connect(masterFilterA);
-    preSuperMasterGain.gain.value = 0.95;
+    preSuperMasterGain.gain.value = 1;
 
     masterFilterA.type = "lowshelf";
     masterFilterA.frequency.value = 250;
@@ -1030,7 +1037,7 @@ function Freeverb (audioContext) {
 
     mReverb.roomSize = 0.9;
     mReverb.dampening = 3500;
-    mReverb.wet.value = 0.5;
+    mReverb.wet.value = 0.1;
     mReverb.dry.value = 1;
     mReverb.connect(superMasterGain);
 
@@ -1074,9 +1081,9 @@ function beginOrg() {
 function beginLFO() {
 	LFO1.start(del);
   LFO2.start(del);
-  constantNode1.start(del);
-  constantNode2.start(del);
-  constantNode3.start(del);
+  // constantNode1.start(del);
+  // constantNode2.start(del);
+  // constantNode3.start(del);
 }
 
 function stopOrg() {
@@ -1086,7 +1093,7 @@ function stopOrg() {
   organ3.stop(nowTime + 0.22);
   organ4.stop(nowTime + 0.22);
   organ5.stop(nowTime + 0.22);
-//  organ5Up.stop(nowTime + 0.22);
+  organ5Up.stop(nowTime + 0.22);
 }
 
 function tempBuff() {
@@ -1218,10 +1225,10 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    var ORG = document.getElementById("beginner");
-    ORG.value = audioContext.sampleRate;
+    // var ORG = document.getElementById("beginner");
+    // ORG.value = audioContext.sampleRate;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
     audioInitiated = true;
   } else {
@@ -1243,7 +1250,7 @@ function tog() {
     reBuff();
     var nowTime1 = audioContext.currentTime;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
+    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
     muted = false;
   }

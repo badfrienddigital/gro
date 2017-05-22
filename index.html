@@ -570,6 +570,11 @@ var BrowserDetect = {
 		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
 	},
 	dataBrowser: [
+    {
+  string: navigator.userAgent,
+  subString: "Chrome",
+  identity: "Chrome"
+},
 		{
 			string: navigator.vendor,
 			subString: "Apple",
@@ -603,13 +608,13 @@ var BrowserDetect = {
 };
 BrowserDetect.init();
 
-if (BrowserDetect.browser === "Safari") {
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContext();
+if (BrowserDetect.browser === "Chrome") {
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  var audioContext = new AudioContext({latencyHint: 'playback'});
 }
 else {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContext({latencyHint: 'playback'});
+var audioContext = new AudioContext();
 }
 
 var context = audioContext;
@@ -711,11 +716,26 @@ var organ5Up = audioContext.createBufferSource();
 
 //
 // provide both 41k and 48k samplerate
-// 41k mp4 currently at 16 bit; change to 24?
 //
 
+var lowOrg = 'organ-low-2m-48.mp4';
+var medOrg = 'organ-med-8m-48.mp4';
+var hiOrg = 'organ-hi-7m-48.mp4';
+var hierOrg = 'organ-hi-er-9m-48.mp4';
+var hiestOrg = 'organ-hi-est-6m-48.mp4';
 
-getSample('organ-low-2m.mp4', function play(buffer) {
+ if (audioContext.sampleRate === 44100) {
+   lowOrg = 'organ-low-2m.mp4';
+   medOrg = 'organ-med-8m.mp4';
+   hiOrg = 'organ-hi-7m.mp4';
+   hierOrg = 'organ-hi-er-9m.mp4';
+   hiestOrg = 'organ-hi-est-6m.mp4';
+ }
+ else{}
+
+
+
+getSample(lowOrg, function play(buffer) {
   organ1.buffer = buffer;
   organ1.connect(filter1);
   filter1.connect(volume1);
@@ -726,7 +746,7 @@ getSample('organ-low-2m.mp4', function play(buffer) {
 
 });
 
-getSample('organ-med-8m.mp4', function play(buffer) {
+getSample(medOrg, function play(buffer) {
   organ2.buffer = buffer;
   organ2.connect(filter2);
   filter2.connect(volume2);
@@ -737,7 +757,7 @@ getSample('organ-med-8m.mp4', function play(buffer) {
 
 });
 
-getSample('organ-hi-7m.mp4', function play(buffer) {
+getSample(hiOrg, function play(buffer) {
   organ3.buffer = buffer;
   organ3.connect(filter3);
   filter3.connect(volume3);
@@ -748,7 +768,7 @@ getSample('organ-hi-7m.mp4', function play(buffer) {
 
 });
 
-getSample('organ-hi-er-9m.mp4', function play(buffer) {
+getSample(hierOrg, function play(buffer) {
   organ4.buffer = buffer;
   organ4.connect(filter4);
   filter4.connect(volume4);
@@ -758,7 +778,7 @@ getSample('organ-hi-er-9m.mp4', function play(buffer) {
   volume4.gain.value = 0.7;
 });
 
-getSample('organ-hi-est-6m.mp4', function play(buffer) {
+getSample(hiestOrg, function play(buffer) {
   organ5.buffer = buffer;
   organ5.connect(filter5);
   filter5.connect(volume5);
@@ -780,7 +800,6 @@ if("detune" in AudioBufferSourceNode) {
   organ5Up.detune.value = 1200;
 }
 else {}
-
 });
 
 function getSample(url, cb) {
@@ -864,6 +883,8 @@ LFO2.frequency.value = 0.0209 * shift;
 
 // Lowpass Comb Filter
 
+
+
 function LowpassCombFilter (context) {
   var node = context.createDelay(1);
   var output = context.createBiquadFilter();
@@ -872,7 +893,6 @@ function LowpassCombFilter (context) {
   // see https://github.com/livejs/freeverb/issues/1#issuecomment-249080213
 
   output.Q.value = -3.0102999566398125;
-
   output.type = 'lowpass';
   node.dampening = output.frequency;
 
@@ -892,7 +912,8 @@ function LowpassCombFilter (context) {
 
 // tune the Freeverb
 
-var combFilterTunings = [1557 / 44100, 1617 / 44100, 1491 / 44100, 1422 / 44100, 1277 / 44100, 1356 / 44100, 1188 / 44100, 1116 / 44100];
+var srt = audioContext.sampleRate;
+var combFilterTunings = [1557 / srt, 1617 / srt, 1491 / srt, 1422 / srt, 1277 / srt, 1356 / srt, 1188 / srt, 1116 / srt];
 var allpassFilterFrequencies = [225, 556, 441, 341];
 
 // create the Freeverb
@@ -1041,7 +1062,9 @@ function Freeverb (audioContext) {
     var mReverb = Freeverb(audioContext);
     masterFilterA.connect(mReverb);
 
-    mReverb.roomSize = 0.9;
+// KEEP ROOMSIZE UNDER 0.8 OR FIREFOX FREAKS OUT
+
+    mReverb.roomSize = 0.7;
     mReverb.dampening = 3500;
     mReverb.wet.value = 0.1;
     mReverb.dry.value = 1;
@@ -1074,8 +1097,11 @@ function beginOrg() {
   organ3.start(startTime3);
   organ4.start(startTime4);
   organ5.start(startTime5);
-  organ5Up.start(startTime5);
 
+  if("detune" in AudioBufferSourceNode) {
+    organ5Up.start(startTime5);
+  }
+  else {}
 
     dur1 = organ1.buffer.duration;
     dur2 = organ2.buffer.duration;
@@ -1087,9 +1113,7 @@ function beginOrg() {
 function beginLFO() {
 	LFO1.start(del);
   LFO2.start(del);
-  // constantNode1.start(del);
-  // constantNode2.start(del);
-  // constantNode3.start(del);
+
 }
 
 function stopOrg() {
@@ -1099,7 +1123,11 @@ function stopOrg() {
   organ3.stop(nowTime + 0.22);
   organ4.stop(nowTime + 0.22);
   organ5.stop(nowTime + 0.22);
+
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.stop(nowTime + 0.22);
+  }
+  else {}
 }
 
 function tempBuff() {
@@ -1136,7 +1164,7 @@ newStart4 = Math.max(del,newStart4);
 newStart5 = startTime5 - totalElapsed;
 newStart5 = Math.max(del,newStart5);
 
-console.log("5:" + newStart5 + "1:" + newStart1);
+// console.log("5:" + newStart5 + "1:" + newStart1);
 
 timesPlayed1 = (totalElapsed - startTime1) / dur1;
 timesPlayed2 = (totalElapsed - startTime2) / dur2;
@@ -1171,7 +1199,6 @@ function reBuff() {
 var nowTime = audioContext.currentTime;
 pauseTime = nowTime - pauseTimeStamp;
 pauseTotal = pauseTotal + pauseTime;
-
 
 organ1 = audioContext.createBufferSource();
 organ2 = audioContext.createBufferSource();
@@ -1219,7 +1246,11 @@ organ5Up = audioContext.createBufferSource();
   organ3.start(newStart3, newOff3);
   organ4.start(newStart4, newOff4);
   organ5.start(newStart5, newOff5);
-  organ5Up.start(newStart5, newOff5);
+
+  if("detune" in AudioBufferSourceNode) {
+  organ5Up.start(newStart5, newOff5);  }
+  else {}
+
 }
 
 
@@ -1231,8 +1262,6 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    var ORG = document.getElementById("beginner");
-    ORG.value = audioContext.sampleRate;
     delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
     masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
     superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);

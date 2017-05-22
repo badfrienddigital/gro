@@ -742,7 +742,7 @@ getSample(lowOrg, function play(buffer) {
   volume1.connect(masterGain);
   // panner1.connect(masterGain);
   organ1.loop = true;
-  volume1.gain.value = 0.9;
+  volume1.gain.value = 0.8;
 
 });
 
@@ -785,7 +785,7 @@ getSample(hiestOrg, function play(buffer) {
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
-  volume5.gain.value = 0.65;
+  volume5.gain.value = 0.75;
 
   organ5Up.buffer = organ5.buffer;
   organ5Up.connect(volume5UpPre);
@@ -794,7 +794,7 @@ getSample(hiestOrg, function play(buffer) {
   filter5Up.connect(panner5Up);
   panner5Up.connect(mdelay);
   organ5Up.loop = true;
-  volume5UpPre.gain.value = 0.18;
+  volume5UpPre.gain.value = 0.21;
 
 if("detune" in AudioBufferSourceNode) {
   organ5Up.detune.value = 1200;
@@ -884,7 +884,6 @@ LFO2.frequency.value = 0.0209 * shift;
 // Lowpass Comb Filter
 
 
-
 function LowpassCombFilter (context) {
   var node = context.createDelay(1);
   var output = context.createBiquadFilter();
@@ -912,7 +911,7 @@ function LowpassCombFilter (context) {
 
 // tune the Freeverb
 
-var srt = audioContext.sampleRate;
+var srt = 44100;
 var combFilterTunings = [1557 / srt, 1617 / srt, 1491 / srt, 1422 / srt, 1277 / srt, 1356 / srt, 1188 / srt, 1116 / srt];
 var allpassFilterFrequencies = [225, 556, 441, 341];
 
@@ -1072,13 +1071,6 @@ function Freeverb (audioContext) {
 
     superMasterGain.connect(audioContext.destination);
     superMasterGain.gain.value = 0;
-
-
-
-
-
-
-
 
 
 

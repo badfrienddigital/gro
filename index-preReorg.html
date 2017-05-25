@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
-open http://localhost:8000
-livereload ~/organ-egg/ -p 8000
+open http://localhost:8080
+livereload ~/organ-egg/ -p 8080
+
 ios
 droidTest
 -->
@@ -56,8 +57,7 @@ textarea {
 * 2. Remove the padding in IE 10-.
 */
 
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'], [type='radio'] {
     box-sizing: border-box;
     /* 1 */
     padding: 0;
@@ -67,8 +67,7 @@ textarea {
 * Correct the cursor style of increment and decrement buttons in Chrome.
 */
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button, [type='number']::-webkit-outer-spin-button {
     height: auto;
 }
 /**
@@ -76,7 +75,7 @@ textarea {
 * 2. Correct the outline style in Safari.
 */
 
-[type="search"] {
+[type='search'] {
     -webkit-appearance: textfield;
     /* 1 */
     outline-offset: -2px;
@@ -86,8 +85,7 @@ textarea {
 * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
 */
 
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-cancel-button, [type='search']::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 /**
@@ -114,8 +112,7 @@ textarea {
 * 1. Show the overflow in Edge.
 */
 
-button,
-input {
+button, input {
     /* 1 */
     overflow: visible;
 }
@@ -124,8 +121,7 @@ input {
 * 1. Remove the inheritance of text transform in Firefox.
 */
 
-button,
-select {
+button, select {
     /* 1 */
     text-transform: none;
 }
@@ -135,12 +131,9 @@ select {
 * 2. Correct the inability to style clickable types in iOS and Safari.
 */
 
-button,
-html [type="button"],
-/* 1 */
+button, html [type='button'], /* 1 */
 
-[type="reset"],
-[type="submit"] {
+[type='reset'], [type='submit'] {
     -webkit-appearance: button;
     /* 2 */
 }
@@ -148,10 +141,7 @@ html [type="button"],
 * Remove the inner border and padding in Firefox.
 */
 
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner {
     border-style: none;
     padding: 0;
 }
@@ -159,10 +149,7 @@ button::-moz-focus-inner,
 * Restore the focus styles unset by the previous rule.
 */
 
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+button:-moz-focusring, [type='button']:-moz-focusring, [type='reset']:-moz-focusring, [type='submit']:-moz-focusring {
     outline: 1px dotted ButtonText;
 }
 /**
@@ -182,16 +169,14 @@ abbr[title] {
 * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
 */
 
-b,
-strong {
+b, strong {
     font-weight: inherit;
 }
 /**
 * Add the correct font weight in Chrome, Edge, and Safari.
 */
 
-b,
-strong {
+b, strong {
     font-weight: bolder;
 }
 /**
@@ -216,8 +201,8 @@ margin: 0.67em 0;
 */
 
 mark {
-    background-color: #ff0;
-    color: #000;
+    background-color: #FFFF00;
+    color: #000000;
 }
 /**
 * Add the correct font size in all browsers.
@@ -231,8 +216,7 @@ small {
 * all browsers.
 */
 
-sub,
-sup {
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -269,10 +253,7 @@ svg:not(:root) {
 * 2. Correct the odd `em` font sizing in all browsers.
 */
 
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
     font-family: monospace, monospace;
     /* 1 */
     font-size: 1em;
@@ -305,11 +286,7 @@ hr {
 * 2. Remove the margin in Firefox and Safari.
 */
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     font: inherit;
     /* 1 */
     margin: 0;
@@ -333,7 +310,7 @@ html {
     /* 1 */
     line-height: 1.15;
     /* 2 */
-    -ms-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
     /* 3 */
     -webkit-text-size-adjust: 100%;
     /* 3 */
@@ -353,22 +330,11 @@ body {
 * 2. Add the correct display in IE.
 */
 
-article,
-aside,
-details,
-/* 1 */
+article, aside, details, /* 1 */
 
-figcaption,
-figure,
-footer,
-header,
-main,
-/* 2 */
+figcaption, figure, footer, header, main, /* 2 */
 
-menu,
-nav,
-section,
-summary {
+menu, nav, section, summary {
     /* 1 */
     display: block;
 }
@@ -376,10 +342,7 @@ summary {
 * Add the correct display in IE 9-.
 */
 
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
     display: inline-block;
 }
 /**
@@ -402,8 +365,7 @@ progress {
 * 1. Add the correct display in IE.
 */
 
-template,
-/* 1 */
+template, /* 1 */
 
 [hidden] {
     display: none;
@@ -426,106 +388,209 @@ a {
 * in all browsers (opinionated).
 */
 
-a:active,
-a:hover {
+a:active, a:hover {
     outline-width: 0;
 }
 
 html {
-  font-size: 18px;
-  overflow: hidden;
+    font-size: 18px;
+    overflow: hidden;
 }
 
 @media (max-width: 900px) {
-  html { font-size: 20px; }
+    html {
+        font-size: 20px;
+    }
 }
 @media (max-width: 400px) {
-  html { font-size: 18px; }
+    html {
+        font-size: 18px;
+    }
 }
 
 body {
-      overflow: hidden;
-      background: #bb6633;
-      font-family:-apple-system, BlinkMacSystemFont,
-               'avenir next', avenir,
-               'helvetica neue', helvetica,
-               ubuntu,
-               roboto, noto,
-               'segoe ui', arial,
-               sans-serif;
-      width:100vw;
-      height:100vh;
-      position: absolute;
+    overflow: hidden;
+    background: #BB6633;
+    font-family: -apple-system, BlinkMacSystemFont,
+    'avenir next', avenir,
+    'helvetica neue', helvetica,
+    ubuntu,
+    roboto, noto,
+    'segoe ui', arial,
+    sans-serif;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
 }
+
+
+
+/*
+initial timing for 70bpm (change in js with shift)
+1m is 3428.58 ms
+6.856 s = 2m
+10.284 s = 3m
+13.712 s = 4m
+27.424 s = 8m
+*/
+
 
 .sure {
     border-bottom: 150vh solid #664433;
-    border-left: 150vw solid #bb6633;
-    border-right: 150vw solid #ccbbaa;
+    border-left: 150vw solid #BB6633;
+    border-right: 150vw solid #CCBBAA;
     border-top: 150vh solid #997777;
     position: absolute;
     -webkit-transform: rotate(50deg);
             transform: rotate(50deg);
-    left:-100vw;
-    top:-100vh;
-    opacity:0.75;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    left: -100vw;
+    top: -100vh;
+    opacity: 0.75;
     overflow: hidden;
+            backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation-name: rotator;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-duration: 27.424s;
+    animation-play-state: paused;
 }
 
 .top {
-    display:block;
+    display: block;
     position: absolute;
-    width:100vw;
-    height:45vh;
-    top:15vh;
-    left:0;
+    width: 100vw;
+    height: 45vh;
+    top: 15vh;
+    left: 0;
     background-color: #332211;
     overflow: hidden;
+    /*-webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    animation-name: mover;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-duration: 13.712s;
+    animation-play-state: paused;*/
 }
 
 .low {
-    display:block;
+    display: block;
     position: absolute;
     border-radius: 100%;
-    width:65vw;
-    height:65vw;
-    top:65vh;
-    left:55vw;
+    width: 65vw;
+    height: 65vw;
+    top: 65vh;
+    left: 55vw;
     background-color: #997777;
     overflow: hidden;
+    /*-webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    animation-name: pulser;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-duration: 6.856s;
+    animation-play-state: paused;*/
+}
+
+@keyframes rotator {
+    0% {
+        -webkit-transform: rotate(50deg);
+                transform: rotate(50deg);
+    }
+    25% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    50% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    75% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    100% {
+        -webkit-transform: rotate(95deg);
+                transform: rotate(95deg);
+    }
+}
+/*
+@keyframes mover {
+  from {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  to {
+    -webkit-transform: translate(0, 25vh);
+    transform: translate(0, 25vh);
+  }
+}
+
+@keyframes pulser {
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(.75, .75);
+    transform: scale(.75, .75);
+  }
+}*/
+
+
+@keyframes buttonIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .button {
-  position: absolute;
-  left: calc(50vw - (1.8rem + 4ex)/2);
-  top: calc(50vh - (1.8rem + 2ex)/2);
-  display: block;
-  padding: 0.9rem;
-  font-size: 2.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #CCBBAA;
-  background-color: #332211;
-  border: none;
-  border-radius: 100%;
-  user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    left: calc(50vw - (1.8rem + 4ex)/2);
+    top: calc(50vh - (1.8rem + 2ex)/2);
+    display: block;
+    padding: 0.9rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #CCBBAA;
+    background-color: #332211;
+    border: none;
+    border-radius: 100%;
+            user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+            backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    animation-name: buttonIn;
+    animation-timing-function: ease;
+    animation-duration: 0.75s;
 }
 
 .button:hover {
-  font-size: 2.6rem;
-  background-color: #4F3826
+    font-size: 2.6rem;
+    background-color: #4F3826;
 }
 
 .button:active {
-    font-size: 2.7rem;
-    font-weight: 900;
+    font-size: 2.8rem;
+    font-weight: 800;
     unicode-bidi: bidi-override;
     direction: rtl;
     color: #332211;
@@ -537,12 +602,16 @@ body {
 <body>
   <div class="top"></div>
   <div class="low"></div>
-  <div class="sure"></div>
+  <div class="sure" id="sure"></div>
   <input class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
 <script src="stereo-panner-node.min.js"></script>
-<script src="constant-source-node.min.js"></script>
 
 <script>
+// CSS animation elements
+
+var bDiv = document.getElementById("sure");
+// var bigBar = document.getElementById("top");
+// var circle = document.getElementById("low");
 
 var BrowserDetect = {
 	init: function () {
@@ -571,6 +640,11 @@ var BrowserDetect = {
 		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
 	},
 	dataBrowser: [
+    {
+  string: navigator.userAgent,
+  subString: "Chrome",
+  identity: "Chrome"
+},
 		{
 			string: navigator.vendor,
 			subString: "Apple",
@@ -600,28 +674,24 @@ var BrowserDetect = {
 			identity: "Linux"
 		}
 	]
-
 };
 BrowserDetect.init();
 
-
-if (BrowserDetect.browser === "Safari") {
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContext();
+if (BrowserDetect.browser === "Chrome") {
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  var audioContext = new AudioContext({latencyHint: 'playback'});
 }
 else {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContext({latencyHint: 'playback'});
+var audioContext = new AudioContext();
 }
 
-
+var context = audioContext;
 StereoPannerNode.polyfill();
-ConstantSourceNode.polyfill();
 
 var masterGain = audioContext.createGain();
 var superMasterGain = audioContext.createGain();
 var masterFilterA = audioContext.createBiquadFilter();
-var masterFilterB = audioContext.createBiquadFilter();
 var preSuperMasterGain = audioContext.createGain();
 
 var volume1 = audioContext.createGain();
@@ -630,32 +700,34 @@ var volume3 = audioContext.createGain();
 var volume4 = audioContext.createGain();
 var volume5 = audioContext.createGain();
 var volume5Up = audioContext.createGain();
+if("detune" in AudioBufferSourceNode) {
 var volume5UpPre = audioContext.createGain();
+}
 
-
-// var panner1 = audioContext.createStereoPanner();
 var panner2 = audioContext.createStereoPanner();
 var panner3 = audioContext.createStereoPanner();
 var panner4 = audioContext.createStereoPanner();
 var panner5 = audioContext.createStereoPanner();
+if("detune" in AudioBufferSourceNode) {
 var panner5Up = audioContext.createStereoPanner();
+}
 
-
-// panner1.pan.value = 0;
 panner2.pan.value = 0.35;
 panner3.pan.value = -0.35;
 panner4.pan.value = 0.75;
 panner5.pan.value = -0.75;
+if("detune" in AudioBufferSourceNode) {
 panner5Up.pan.value = 0.85;
-
+}
 
 var filter1 = audioContext.createBiquadFilter();
 var filter2 = audioContext.createBiquadFilter();
 var filter3 = audioContext.createBiquadFilter();
 var filter4 = audioContext.createBiquadFilter();
 var filter5 = audioContext.createBiquadFilter();
+if("detune" in AudioBufferSourceNode) {
 var filter5Up = audioContext.createBiquadFilter();
-
+}
 
 filter1.type = "lowpass";
 filter1.frequency.value = 1200;
@@ -672,55 +744,84 @@ filter4.frequency.value = 350;
 filter5.type = "highpass";
 filter5.frequency.value = 400;
 
+if("detune" in AudioBufferSourceNode) {
 filter5Up.type = "lowpass";
 filter5Up.frequency.value = 2200;
-
+}
 
 var LFO1 = audioContext.createOscillator();
 var LFO2 = audioContext.createOscillator();
 
-
 LFO1.type = 'triangle';
 LFO2.type = 'sine';
 
-var constantNode1 = audioContext.createConstantSource();
-constantNode1.offset.value = 0.8;
-var constantNode2 = audioContext.createConstantSource();
-constantNode2.offset.value = 0.9;
-var constantNode3 = audioContext.createConstantSource();
-constantNode3.offset.value = 1.5;
+var LFOgain1 = audioContext.createGain();
+var LFOgain2 = audioContext.createGain();
+var LFOgain3 = audioContext.createGain();
+var LFOgain4 = audioContext.createGain();
+var LFOgain5 = audioContext.createGain();
 
-LFO1.connect(volume1.gain);
-LFO1.connect(constantNode1.offset);
-LFO1.connect(constantNode3.offset);
+LFOgain1.gain.value = 0.3;
+LFOgain2.gain.value = 0.15;
+LFOgain3.gain.value = 0.2;
+LFOgain4.gain.value = 0.4;
+LFOgain5.gain.value = 0.3;
 
-LFO2.connect(constantNode2.offset);
-LFO2.connect(volume5.gain);
-LFO2.connect(volume5Up.gain);
+LFO1.connect(LFOgain1);
+LFO1.connect(LFOgain2);
+LFO1.connect(LFOgain4);
 
-constantNode1.connect(volume2.gain);
-constantNode2.connect(volume3.gain);
-constantNode3.connect(volume4.gain);
+LFO2.connect(LFOgain3);
+LFO2.connect(LFOgain5);
+
+LFOgain1.connect(volume1.gain);
+LFOgain2.connect(volume2.gain);
+LFOgain3.connect(volume3.gain);
+LFOgain4.connect(volume4.gain);
+LFOgain5.connect(volume5.gain);
+if("detune" in AudioBufferSourceNode) {
+LFOgain5.connect(volume5Up.gain);
+}
 
 var organ1 = audioContext.createBufferSource();
 var organ2 = audioContext.createBufferSource();
 var organ3 = audioContext.createBufferSource();
 var organ4 = audioContext.createBufferSource();
 var organ5 = audioContext.createBufferSource();
+if("detune" in AudioBufferSourceNode) {
 var organ5Up = audioContext.createBufferSource();
+}
 
-getSample('organ-low-2m.mp4', function play(buffer) {
+//
+// provide both 41k and 48k samplerate
+//
+
+var lowOrg = 'organ-low-2m-48.mp4';
+var medOrg = 'organ-med-8m-48.mp4';
+var hiOrg = 'organ-hi-7m-48.mp4';
+var hierOrg = 'organ-hi-er-9m-48.mp4';
+var hiestOrg = 'organ-hi-est-6m-48.mp4';
+
+ if (audioContext.sampleRate === 44100) {
+   lowOrg = 'organ-low-2m.mp4';
+   medOrg = 'organ-med-8m.mp4';
+   hiOrg = 'organ-hi-7m.mp4';
+   hierOrg = 'organ-hi-er-9m.mp4';
+   hiestOrg = 'organ-hi-est-6m.mp4';
+ }
+
+getSample(lowOrg, function play(buffer) {
   organ1.buffer = buffer;
   organ1.connect(filter1);
   filter1.connect(volume1);
   volume1.connect(masterGain);
   // panner1.connect(masterGain);
   organ1.loop = true;
-  volume1.gain.value = 0.9;
+  volume1.gain.value = 0.75;
 
 });
 
-getSample('organ-med-8m.mp4', function play(buffer) {
+getSample(medOrg, function play(buffer) {
   organ2.buffer = buffer;
   organ2.connect(filter2);
   filter2.connect(volume2);
@@ -731,7 +832,7 @@ getSample('organ-med-8m.mp4', function play(buffer) {
 
 });
 
-getSample('organ-hi-7m.mp4', function play(buffer) {
+getSample(hiOrg, function play(buffer) {
   organ3.buffer = buffer;
   organ3.connect(filter3);
   filter3.connect(volume3);
@@ -742,7 +843,7 @@ getSample('organ-hi-7m.mp4', function play(buffer) {
 
 });
 
-getSample('organ-hi-er-9m.mp4', function play(buffer) {
+getSample(hierOrg, function play(buffer) {
   organ4.buffer = buffer;
   organ4.connect(filter4);
   filter4.connect(volume4);
@@ -752,15 +853,16 @@ getSample('organ-hi-er-9m.mp4', function play(buffer) {
   volume4.gain.value = 0.7;
 });
 
-getSample('organ-hi-est-6m.mp4', function play(buffer) {
+getSample(hiestOrg, function play(buffer) {
   organ5.buffer = buffer;
   organ5.connect(filter5);
   filter5.connect(volume5);
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
-  volume5.gain.value = 0.65;
+  volume5.gain.value = 0.75;
 
+if("detune" in AudioBufferSourceNode) {
   organ5Up.buffer = organ5.buffer;
   organ5Up.connect(volume5UpPre);
   volume5UpPre.connect(volume5Up);
@@ -768,15 +870,10 @@ getSample('organ-hi-est-6m.mp4', function play(buffer) {
   filter5Up.connect(panner5Up);
   panner5Up.connect(mdelay);
   organ5Up.loop = true;
-  volume5UpPre.gain.value = 0.12;
-
-if (BrowserDetect.browser === "Safari") {}
-else {
+  volume5UpPre.gain.value = 0.23;
   organ5Up.detune.value = 1200;
 }
-
 });
-
 
 function getSample(url, cb) {
   var request = new XMLHttpRequest();
@@ -796,6 +893,13 @@ function getSample(url, cb) {
 // 6.856 s = 2m
 // 10.284 s = 3m
 // 13.712 s = 4m
+//
+
+// PERF OPTS
+//
+// move shuffler & randomizer to web worker?
+// re-use startTimes?
+//
 //
 
 var startTimes = [6.856, 0, 13.712, 0, 10.284];
@@ -827,7 +931,7 @@ rand3 = startTimes[2] / shift;
 rand4 = startTimes[3] / shift;
 rand5 = startTimes[4] / shift;
 
-var del = 0.2;
+var del = 0.18;
 
 var startTime1 = audioContext.currentTime + rand1 + del;
 var startTime2 = audioContext.currentTime + rand2 + del;
@@ -840,20 +944,183 @@ organ2.playbackRate.value = shift;
 organ3.playbackRate.value = shift;
 organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
+if("detune" in AudioBufferSourceNode) {
 organ5Up.playbackRate.value = shift;
+}
 
-LFO1.frequency.value = 0.073 * shift;
-LFO2.frequency.value = 0.0365 * shift;
+LFO1.frequency.value = 0.0162 * shift;
+LFO2.frequency.value = 0.0209 * shift;
+
+var aniDur = 27.424 * shift;
+
+bDiv.style.WebkitAnimationDuration = aniDur + "s";
+bDiv.style.animationDuration = aniDur + "s";
+
+// LFO1.frequency.value = 0.073 * shift;
+// LFO2.frequency.value = 0.0365 * shift;
 // LFO3.frequency.value = 0.0209 * shift;
 // LFO4.frequency.value = 0.0162 * shift;
 // LFO5.frequency.value = 0.0243 * shift;
 
-    // var mcompressor = audioContext.createDynamicsCompressor();
-    // mcompressor.threshold.value = -15;
-    // mcompressor.knee.value = 10;
-    // mcompressor.ratio.value = 2.5;
-    // mcompressor.attack.value = 0.1;
-    // mcompressor.release.value = 0.55;
+//
+// cheap, Schroeder-style Reverb, called "Freeverb"
+// JS implementation by Yotam Mann in TONE.js
+// https://github.com/Tonejs/Tone.js
+//
+
+// Lowpass Comb Filter
+
+
+function LowpassCombFilter (context) {
+  var node = context.createDelay(1);
+  var output = context.createBiquadFilter();
+
+  // this magic number seems to fix everything in Chrome 53
+  // see https://github.com/livejs/freeverb/issues/1#issuecomment-249080213
+
+  output.Q.value = -3.0102999566398125;
+  output.type = 'lowpass';
+  node.dampening = output.frequency;
+
+  var feedback = context.createGain();
+  node.resonance = feedback.gain;
+
+  node.connect(output);
+  output.connect(feedback);
+  feedback.connect(node);
+
+  node.dampening.value = 3000;
+  node.delayTime.value = 0.1;
+  node.resonance.value = 0.5;
+
+  return node;
+}
+
+// tune the Freeverb
+
+var srt = 44100;
+var combFilterTunings = [1557 / srt, 1617 / srt, 1491 / srt, 1422 / srt, 1277 / srt, 1356 / srt, 1188 / srt, 1116 / srt];
+var allpassFilterFrequencies = [225, 556, 441, 341];
+
+// create the Freeverb
+
+function Freeverb (audioContext) {
+  var node = audioContext.createGain();
+  node.channelCountMode = 'explicit';
+  node.channelCount = 2;
+
+  var output = audioContext.createGain();
+  var merger = audioContext.createChannelMerger(2);
+  var splitter = audioContext.createChannelSplitter(2);
+  var highpass = audioContext.createBiquadFilter();
+  highpass.type = 'highpass';
+  highpass.frequency.value = 200;
+
+  var wet = audioContext.createGain();
+  var dry = audioContext.createGain();
+
+  node.connect(dry);
+  node.connect(wet);
+  wet.connect(splitter);
+  merger.connect(highpass);
+  highpass.connect(output);
+  dry.connect(output);
+
+  var combFilters = [];
+  var allpassFiltersL = [];
+  var allpassFiltersR = [];
+  var roomSize = 0.8;
+  var dampening = 3000;
+
+  // make the allpass filters on the right
+  for (var l = 0; l < allpassFilterFrequencies.length; l++) {
+    var allpassL = audioContext.createBiquadFilter();
+    allpassL.type = 'allpass';
+    allpassL.frequency.value = allpassFilterFrequencies[l];
+    allpassFiltersL.push(allpassL);
+
+    if (allpassFiltersL[l - 1]) {
+      allpassFiltersL[l - 1].connect(allpassL);
+    }
+  }
+
+  // make the allpass filters on the left
+  for (var r = 0; r < allpassFilterFrequencies.length; r++) {
+    var allpassR = audioContext.createBiquadFilter();
+    allpassR.type = 'allpass';
+    allpassR.frequency.value = allpassFilterFrequencies[r];
+    allpassFiltersR.push(allpassR);
+
+    if (allpassFiltersR[r - 1]) {
+      allpassFiltersR[r - 1].connect(allpassR);
+    }
+  }
+
+  allpassFiltersL[allpassFiltersL.length - 1].connect(merger, 0, 0);
+  allpassFiltersR[allpassFiltersR.length - 1].connect(merger, 0, 1);
+
+  // make the comb filters
+  for (var c = 0; c < combFilterTunings.length; c++) {
+    var lfpf = LowpassCombFilter(audioContext);
+    lfpf.delayTime.value = combFilterTunings[c];
+    if (c < combFilterTunings.length / 2) {
+      splitter.connect(lfpf, 0);
+      lfpf.connect(allpassFiltersL[0]);
+    } else {
+      splitter.connect(lfpf, 1);
+      lfpf.connect(allpassFiltersR[0]);
+    }
+    combFilters.push(lfpf);
+  }
+
+  Object.defineProperties(node, {
+    roomSize: {
+      get: function () {
+        return roomSize;
+      },
+      set: function (value) {
+        roomSize = value;
+        refreshFilters();
+      }
+    },
+    dampening: {
+      get: function () {
+        return dampening;
+      },
+
+      set: function (value) {
+        dampening = value;
+        refreshFilters();
+      }
+    }
+  });
+
+  refreshFilters();
+
+  node.connect = output.connect.bind(output);
+  node.disconnect = output.disconnect.bind(output);
+  node.wet = wet.gain;
+  node.dry = dry.gain;
+
+  // expose combFilters for direct automation
+  node.combFilters = combFilters;
+
+  return node;
+
+  // scoped
+
+  function refreshFilters () {
+    for (var i = 0; i < combFilters.length; i++) {
+      combFilters[i].resonance.value = roomSize;
+      combFilters[i].dampening.value = dampening;
+    }
+  }
+}
+
+
+//
+//
+//
 
     var delGain = audioContext.createGain();
     delGain.gain.value = 0;
@@ -872,33 +1139,32 @@ LFO2.frequency.value = 0.0365 * shift;
     masterGain.connect(mdelay);
 
     preSuperMasterGain.connect(masterFilterA);
-    preSuperMasterGain.gain.value = 0.95;
+    preSuperMasterGain.gain.value = 1;
 
     masterFilterA.type = "lowshelf";
     masterFilterA.frequency.value = 250;
-    masterFilterA.gain.value = -5;
-    masterFilterA.connect(superMasterGain);
+    masterFilterA.gain.value = -7;
 
-    masterFilterB.type = "lowshelf";
-    masterFilterB.frequency.value = 150;
-    masterFilterB.gain.value = -10;
-    masterFilterB.connect(superMasterGain);
+    var mReverb = Freeverb(audioContext);
+    masterFilterA.connect(mReverb);
+
+// KEEP ROOMSIZE UNDER 0.8 OR FIREFOX FREAKS OUT
+
+    mReverb.roomSize = 0.7;
+    mReverb.dampening = 4000;
+    mReverb.wet.value = 0.12;
+    mReverb.dry.value = 1;
+    mReverb.connect(superMasterGain);
 
     superMasterGain.connect(audioContext.destination);
     superMasterGain.gain.value = 0;
 
 
 
-
-
-
-
-
-
-
 //
 // BEGIN PLAYBACK CONTROLS
 //
+
 
 var pauseTime = 0;
 var pauseTimeStamp = 0;
@@ -911,32 +1177,41 @@ function beginOrg() {
   organ3.start(startTime3);
   organ4.start(startTime4);
   organ5.start(startTime5);
-//  organ5Up.start(startTime5);
 
+  if("detune" in AudioBufferSourceNode) {
+    organ5Up.start(startTime5);
+  }
 
     dur1 = organ1.buffer.duration;
     dur2 = organ2.buffer.duration;
     dur3 = organ3.buffer.duration;
     dur4 = organ4.buffer.duration;
     dur5 = organ5.buffer.duration;
+
+  // bDiv.style.WebkitAnimationPlayState = "running";
+  // bDiv.style.animationPlayState = "running";
 }
 
 function beginLFO() {
 	LFO1.start(del);
   LFO2.start(del);
-  constantNode1.start(del);
-  constantNode2.start(del);
-  constantNode3.start(del);
 }
 
 function stopOrg() {
   var nowTime = audioContext.currentTime;
-  organ1.stop(nowTime + 0.22);
-  organ2.stop(nowTime + 0.22);
-  organ3.stop(nowTime + 0.22);
-  organ4.stop(nowTime + 0.22);
-  organ5.stop(nowTime + 0.22);
-//  organ5Up.stop(nowTime + 0.22);
+  organ1.stop(nowTime + 0.11);
+  organ2.stop(nowTime + 0.11);
+  organ3.stop(nowTime + 0.11);
+  organ4.stop(nowTime + 0.11);
+  organ5.stop(nowTime + 0.11);
+
+  if("detune" in AudioBufferSourceNode) {
+  organ5Up.stop(nowTime + 0.11);
+  }
+
+    // bDiv.style.WebkitAnimationPlayState = "paused";
+    // bDiv.style.animationPlayState = "paused";
+
 }
 
 function tempBuff() {
@@ -973,7 +1248,7 @@ newStart4 = Math.max(del,newStart4);
 newStart5 = startTime5 - totalElapsed;
 newStart5 = Math.max(del,newStart5);
 
-console.log("5:" + newStart5 + "1:" + newStart1);
+// console.log("5:" + newStart5 + "1:" + newStart1);
 
 timesPlayed1 = (totalElapsed - startTime1) / dur1;
 timesPlayed2 = (totalElapsed - startTime2) / dur2;
@@ -1009,41 +1284,50 @@ var nowTime = audioContext.currentTime;
 pauseTime = nowTime - pauseTimeStamp;
 pauseTotal = pauseTotal + pauseTime;
 
-
 organ1 = audioContext.createBufferSource();
 organ2 = audioContext.createBufferSource();
 organ3 = audioContext.createBufferSource();
 organ4 = audioContext.createBufferSource();
 organ5 = audioContext.createBufferSource();
+if("detune" in AudioBufferSourceNode) {
 organ5Up = audioContext.createBufferSource();
+}
 
   organ1.buffer = temp1;
   organ2.buffer = temp2;
   organ3.buffer = temp3;
   organ4.buffer = temp4;
   organ5.buffer = temp5;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.buffer = temp5;
+}
 
   organ1.loop = true;
   organ2.loop = true;
   organ3.loop = true;
   organ4.loop = true;
   organ5.loop = true;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.loop = true;
+}
 
   organ1.playbackRate.value = shift;
   organ2.playbackRate.value = shift;
   organ3.playbackRate.value = shift;
   organ4.playbackRate.value = shift;
   organ5.playbackRate.value = shift;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.playbackRate.value = shift;
+}
 
   organ1.connect(filter1);
   organ2.connect(filter2);
   organ3.connect(filter3);
   organ4.connect(filter4);
   organ5.connect(filter5);
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.connect(volume5UpPre);
+}
 
   newStart1 = newStart1 + nowTime;
   newStart2 = newStart2 + nowTime;
@@ -1056,9 +1340,25 @@ organ5Up = audioContext.createBufferSource();
   organ3.start(newStart3, newOff3);
   organ4.start(newStart4, newOff4);
   organ5.start(newStart5, newOff5);
-//  organ5Up.start(newStart5, newOff5);
+  if("detune" in AudioBufferSourceNode) {
+  organ5Up.start(newStart5, newOff5);
 }
 
+    // bDiv.style.WebkitAnimationPlayState = "running";
+    // bDiv.style.animationPlayState = "running";
+
+}
+
+
+//
+// toggle button functions
+//
+
+function volUp(nowTime1){
+delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
+masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
+superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+}
 
 var audioInitiated = false;
 var muted = false;
@@ -1068,11 +1368,7 @@ function playIt() {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    // var ORG = document.getElementById("beginner");
-    // ORG.value = audioContext.sampleRate;
-    delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
-    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+    volUp(nowTime1);
     audioInitiated = true;
   } else {
     tog();
@@ -1082,9 +1378,9 @@ function playIt() {
 function tog() {
   if (muted === false) {
     var nowTime = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
-    masterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
-    superMasterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
+    delGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
+    masterGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
+    superMasterGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
     muted = true;
     tempBuff();
     stopOrg();
@@ -1092,9 +1388,7 @@ function tog() {
   else {
     reBuff();
     var nowTime1 = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.4, nowTime1 + del, 0.12);
-    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+    volUp(nowTime1);
     muted = false;
   }
 }

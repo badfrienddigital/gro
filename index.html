@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
-open http://localhost:8000
-livereload ~/organ-egg/ -p 8000
+open http://localhost:8080
+livereload ~/organ-egg/ -p 8080
+
 ios
 droidTest
 -->
@@ -56,8 +57,7 @@ textarea {
 * 2. Remove the padding in IE 10-.
 */
 
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'], [type='radio'] {
     box-sizing: border-box;
     /* 1 */
     padding: 0;
@@ -67,8 +67,7 @@ textarea {
 * Correct the cursor style of increment and decrement buttons in Chrome.
 */
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button, [type='number']::-webkit-outer-spin-button {
     height: auto;
 }
 /**
@@ -76,7 +75,7 @@ textarea {
 * 2. Correct the outline style in Safari.
 */
 
-[type="search"] {
+[type='search'] {
     -webkit-appearance: textfield;
     /* 1 */
     outline-offset: -2px;
@@ -86,8 +85,7 @@ textarea {
 * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
 */
 
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-cancel-button, [type='search']::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 /**
@@ -114,8 +112,7 @@ textarea {
 * 1. Show the overflow in Edge.
 */
 
-button,
-input {
+button, input {
     /* 1 */
     overflow: visible;
 }
@@ -124,8 +121,7 @@ input {
 * 1. Remove the inheritance of text transform in Firefox.
 */
 
-button,
-select {
+button, select {
     /* 1 */
     text-transform: none;
 }
@@ -135,12 +131,9 @@ select {
 * 2. Correct the inability to style clickable types in iOS and Safari.
 */
 
-button,
-html [type="button"],
-/* 1 */
+button, html [type='button'], /* 1 */
 
-[type="reset"],
-[type="submit"] {
+[type='reset'], [type='submit'] {
     -webkit-appearance: button;
     /* 2 */
 }
@@ -148,10 +141,7 @@ html [type="button"],
 * Remove the inner border and padding in Firefox.
 */
 
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner {
     border-style: none;
     padding: 0;
 }
@@ -159,10 +149,7 @@ button::-moz-focus-inner,
 * Restore the focus styles unset by the previous rule.
 */
 
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+button:-moz-focusring, [type='button']:-moz-focusring, [type='reset']:-moz-focusring, [type='submit']:-moz-focusring {
     outline: 1px dotted ButtonText;
 }
 /**
@@ -182,16 +169,14 @@ abbr[title] {
 * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
 */
 
-b,
-strong {
+b, strong {
     font-weight: inherit;
 }
 /**
 * Add the correct font weight in Chrome, Edge, and Safari.
 */
 
-b,
-strong {
+b, strong {
     font-weight: bolder;
 }
 /**
@@ -216,8 +201,8 @@ margin: 0.67em 0;
 */
 
 mark {
-    background-color: #ff0;
-    color: #000;
+    background-color: #FFFF00;
+    color: #000000;
 }
 /**
 * Add the correct font size in all browsers.
@@ -231,8 +216,7 @@ small {
 * all browsers.
 */
 
-sub,
-sup {
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -269,10 +253,7 @@ svg:not(:root) {
 * 2. Correct the odd `em` font sizing in all browsers.
 */
 
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
     font-family: monospace, monospace;
     /* 1 */
     font-size: 1em;
@@ -305,11 +286,7 @@ hr {
 * 2. Remove the margin in Firefox and Safari.
 */
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     font: inherit;
     /* 1 */
     margin: 0;
@@ -333,7 +310,7 @@ html {
     /* 1 */
     line-height: 1.15;
     /* 2 */
-    -ms-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
     /* 3 */
     -webkit-text-size-adjust: 100%;
     /* 3 */
@@ -353,22 +330,11 @@ body {
 * 2. Add the correct display in IE.
 */
 
-article,
-aside,
-details,
-/* 1 */
+article, aside, details, /* 1 */
 
-figcaption,
-figure,
-footer,
-header,
-main,
-/* 2 */
+figcaption, figure, footer, header, main, /* 2 */
 
-menu,
-nav,
-section,
-summary {
+menu, nav, section, summary {
     /* 1 */
     display: block;
 }
@@ -376,10 +342,7 @@ summary {
 * Add the correct display in IE 9-.
 */
 
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
     display: inline-block;
 }
 /**
@@ -402,8 +365,7 @@ progress {
 * 1. Add the correct display in IE.
 */
 
-template,
-/* 1 */
+template, /* 1 */
 
 [hidden] {
     display: none;
@@ -426,122 +388,286 @@ a {
 * in all browsers (opinionated).
 */
 
-a:active,
-a:hover {
+a:active, a:hover {
     outline-width: 0;
 }
 
 html {
-  font-size: 18px;
-  overflow: hidden;
+    font-size: 18px;
+    overflow: hidden;
 }
 
 @media (max-width: 900px) {
-  html { font-size: 20px; }
+    html {
+        font-size: 20px;
+    }
 }
 @media (max-width: 400px) {
-  html { font-size: 18px; }
+    html {
+        font-size: 18px;
+    }
 }
 
 body {
-      overflow: hidden;
-      background: #bb6633;
-      font-family:-apple-system, BlinkMacSystemFont,
-               'avenir next', avenir,
-               'helvetica neue', helvetica,
-               ubuntu,
-               roboto, noto,
-               'segoe ui', arial,
-               sans-serif;
-      width:100vw;
-      height:100vh;
-      position: absolute;
+    overflow: hidden;
+    background: #BB6633;
+    font-family: -apple-system, BlinkMacSystemFont,
+    'avenir next', avenir,
+    'helvetica neue', helvetica,
+    ubuntu,
+    roboto, noto,
+    'segoe ui', arial,
+    sans-serif;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
 }
+
+/*
+initial timing for 70bpm (change in js with shift)
+4n = 857 ms
+1m is 3428.58 ms
+6.856 s = 2m
+10.284 s = 3m
+13.712 s = 4m
+27.424 s = 8m
+*/
 
 .sure {
     border-bottom: 150vh solid #664433;
-    border-left: 150vw solid #bb6633;
-    border-right: 150vw solid #ccbbaa;
+    border-left: 150vw solid #BB6633;
+    border-right: 150vw solid #CCBBAA;
     border-top: 150vh solid #997777;
     position: absolute;
     -webkit-transform: rotate(50deg);
             transform: rotate(50deg);
-    left:-100vw;
-    top:-100vh;
-    opacity:0.75;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    left: -100vw;
+    top: -100vh;
+    opacity: 0.75;
     overflow: hidden;
+            backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation-name: rotator;
+    animation-fill-mode: forwards;
+    /*animation-iteration-count: infinite;*/
+    /*animation-direction: alternate;*/
+    animation-timing-function: ease;
+    animation-duration: 3.4288s;
+    /*animation-play-state: paused;*/
 }
 
 .top {
-    display:block;
+    display: block;
     position: absolute;
-    width:100vw;
-    height:45vh;
-    top:15vh;
-    left:0;
+    width: 100vw;
+    height: 45vh;
+    top: 15vh;
+    left: 0;
     background-color: #332211;
     overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    animation-name: mover;
+    animation-iteration-count: infinite;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1714ms;
+    animation-duration: 3.4288s;
+    /*animation-play-state: paused;*/
 }
 
 .low {
-    display:block;
+    display: block;
     position: absolute;
     border-radius: 100%;
-    width:65vw;
-    height:65vw;
-    top:65vh;
-    left:55vw;
+    width: 65vw;
+    height: 65vw;
+    top: 65vh;
+    left: 55vw;
     background-color: #997777;
     overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    animation-name: pulser;
+    animation-iteration-count: infinite;
+    animation-direction: forwards;
+    animation-timing-function: ease;
+    animation-delay: 3.4288s;
+    animation-duration: 3.4288s;
+    /*animation-play-state: paused;*/
+}
+
+/*@keyframes rotator {
+    0% {
+        -webkit-transform: rotate(50deg);
+                transform: rotate(50deg);
+    }
+    25% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    50% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    75% {
+        -webkit-transform: rotate(72.2deg);
+                transform: rotate(72.2deg);
+    }
+    100% {
+        -webkit-transform: rotate(95deg);
+                transform: rotate(95deg);
+    }
+}*/
+
+@keyframes rotator {
+    0%, 100% {
+        -webkit-transform: rotate(50deg);
+                transform: rotate(50deg);
+    }
+    25% {
+        -webkit-transform: rotate(95deg);
+                transform: rotate(95deg);
+    }
+}
+
+
+@keyframes mover {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  20% {
+    -webkit-transform: translate(0, 25vh);
+    transform: translate(0, 25vh);
+  }
+  42% {
+    -webkit-transform: translate(0, -2vh);
+    transform: translate(0, -2vh);
+  }
+  48% {
+    -webkit-transform: translate(0, 2vh);
+    transform: translate(0, 2vh);
+  }
+  54% {
+    -webkit-transform: translate(0, -0.5vh);
+    transform: translate(0, -0.5vh);
+  }
+  58% {
+    -webkit-transform: translate(0, 0.5vh);
+    transform: translate(0, 0.5vh);
+  }
+  62% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+}
+
+@keyframes pulser {
+  0%, 50%, 100% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(1.25, 1.25);
+    transform: scale(1.25, 1.25);
+  }
+}
+
+
+@keyframes buttonIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .button {
-  position: absolute;
-  left: calc(50vw - (1.8rem + 4ex)/2);
-  top: calc(50vh - (1.8rem + 2ex)/2);
-  display: block;
-  padding: 0.9rem;
-  font-size: 2.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #CCBBAA;
-  background-color: #332211;
-  border: none;
-  border-radius: 100%;
-  user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: absolute;
+    left: calc(50vw - (1.8rem + 4ex)/2);
+    top: calc(50vh - (1.8rem + 2ex)/2);
+    display: block;
+    padding: 0.9rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #CCBBAA;
+    background-color: #332211;
+    border: none;
+    border-radius: 100%;
+            user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+            backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    animation-name: buttonIn;
+    animation-timing-function: ease;
+    animation-duration: 0.75s;
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+
 }
 
 .button:hover {
-  font-size: 2.6rem;
-  background-color: #4F3826
+    font-size: 2.6rem;
+    background-color: #4F3826;
 }
 
 .button:active {
-    font-size: 2.7rem;
-    font-weight: 900;
+    font-size: 2.8rem;
+    font-weight: 800;
     unicode-bidi: bidi-override;
     direction: rtl;
     color: #332211;
     background-color: #BFAA9D;
 }
 
+.loader{
+  position: absolute;
+  left: calc(50vw - (1.8rem + 4ex)/2);
+  top: calc(50vh - (1.8rem + 2ex)/2);
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  -webkit-transform: translateY(-0.3ex);
+  transform: translateY(-0.3ex);
+}
+
 </style>
 
 <body>
-  <div class="top"></div>
-  <div class="low"></div>
-  <div class="sure"></div>
+  <div class="top" id="top"></div>
+  <div class="low" id="low"></div>
+  <div class="sure" id="sure"></div>
+  <p class="loader">loading</p>
   <input class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
-<script src="stereo-panner-node.min.js"></script>
 
+<script src="stereo-panner-node.min.js"></script>
 <script>
+// CSS animation elements
+
+var bDiv = document.getElementById("sure");
+var buttr = document.getElementById("beginner");
+var bigBar = document.getElementById("top");
+var circle = document.getElementById("low");
 
 var BrowserDetect = {
 	init: function () {
@@ -604,7 +730,6 @@ var BrowserDetect = {
 			identity: "Linux"
 		}
 	]
-
 };
 BrowserDetect.init();
 
@@ -618,7 +743,6 @@ var audioContext = new AudioContext();
 }
 
 var context = audioContext;
-
 StereoPannerNode.polyfill();
 
 var masterGain = audioContext.createGain();
@@ -632,28 +756,34 @@ var volume3 = audioContext.createGain();
 var volume4 = audioContext.createGain();
 var volume5 = audioContext.createGain();
 var volume5Up = audioContext.createGain();
+if("detune" in AudioBufferSourceNode) {
 var volume5UpPre = audioContext.createGain();
+}
 
-// var panner1 = audioContext.createStereoPanner();
 var panner2 = audioContext.createStereoPanner();
 var panner3 = audioContext.createStereoPanner();
 var panner4 = audioContext.createStereoPanner();
 var panner5 = audioContext.createStereoPanner();
+if("detune" in AudioBufferSourceNode) {
 var panner5Up = audioContext.createStereoPanner();
+}
 
-// panner1.pan.value = 0;
 panner2.pan.value = 0.35;
 panner3.pan.value = -0.35;
 panner4.pan.value = 0.75;
 panner5.pan.value = -0.75;
+if("detune" in AudioBufferSourceNode) {
 panner5Up.pan.value = 0.85;
+}
 
 var filter1 = audioContext.createBiquadFilter();
 var filter2 = audioContext.createBiquadFilter();
 var filter3 = audioContext.createBiquadFilter();
 var filter4 = audioContext.createBiquadFilter();
 var filter5 = audioContext.createBiquadFilter();
+if("detune" in AudioBufferSourceNode) {
 var filter5Up = audioContext.createBiquadFilter();
+}
 
 filter1.type = "lowpass";
 filter1.frequency.value = 1200;
@@ -670,9 +800,10 @@ filter4.frequency.value = 350;
 filter5.type = "highpass";
 filter5.frequency.value = 400;
 
+if("detune" in AudioBufferSourceNode) {
 filter5Up.type = "lowpass";
 filter5Up.frequency.value = 2200;
-
+}
 
 var LFO1 = audioContext.createOscillator();
 var LFO2 = audioContext.createOscillator();
@@ -704,15 +835,18 @@ LFOgain2.connect(volume2.gain);
 LFOgain3.connect(volume3.gain);
 LFOgain4.connect(volume4.gain);
 LFOgain5.connect(volume5.gain);
+if("detune" in AudioBufferSourceNode) {
 LFOgain5.connect(volume5Up.gain);
-
+}
 
 var organ1 = audioContext.createBufferSource();
 var organ2 = audioContext.createBufferSource();
 var organ3 = audioContext.createBufferSource();
 var organ4 = audioContext.createBufferSource();
 var organ5 = audioContext.createBufferSource();
+if("detune" in AudioBufferSourceNode) {
 var organ5Up = audioContext.createBufferSource();
+}
 
 //
 // provide both 41k and 48k samplerate
@@ -731,23 +865,22 @@ var hiestOrg = 'organ-hi-est-6m-48.mp4';
    hierOrg = 'organ-hi-er-9m.mp4';
    hiestOrg = 'organ-hi-est-6m.mp4';
  }
- else{}
-
-
 
 getSample(lowOrg, function play(buffer) {
-  organ1.buffer = buffer;
+  temp1 = buffer;
+  organ1.buffer = temp1;
   organ1.connect(filter1);
   filter1.connect(volume1);
   volume1.connect(masterGain);
   // panner1.connect(masterGain);
   organ1.loop = true;
-  volume1.gain.value = 0.8;
+  volume1.gain.value = 0.75;
 
 });
 
 getSample(medOrg, function play(buffer) {
-  organ2.buffer = buffer;
+  temp2 = buffer;
+  organ2.buffer = temp2;
   organ2.connect(filter2);
   filter2.connect(volume2);
   volume2.connect(panner2);
@@ -758,7 +891,8 @@ getSample(medOrg, function play(buffer) {
 });
 
 getSample(hiOrg, function play(buffer) {
-  organ3.buffer = buffer;
+  temp3 = buffer;
+  organ3.buffer = temp3;
   organ3.connect(filter3);
   filter3.connect(volume3);
   volume3.connect(panner3);
@@ -769,7 +903,8 @@ getSample(hiOrg, function play(buffer) {
 });
 
 getSample(hierOrg, function play(buffer) {
-  organ4.buffer = buffer;
+  temp4 = buffer;
+  organ4.buffer = temp4;
   organ4.connect(filter4);
   filter4.connect(volume4);
   volume4.connect(panner4);
@@ -779,7 +914,8 @@ getSample(hierOrg, function play(buffer) {
 });
 
 getSample(hiestOrg, function play(buffer) {
-  organ5.buffer = buffer;
+  temp5 = buffer;
+  organ5.buffer = temp5;
   organ5.connect(filter5);
   filter5.connect(volume5);
   volume5.connect(panner5);
@@ -787,6 +923,7 @@ getSample(hiestOrg, function play(buffer) {
   organ5.loop = true;
   volume5.gain.value = 0.75;
 
+if("detune" in AudioBufferSourceNode) {
   organ5Up.buffer = organ5.buffer;
   organ5Up.connect(volume5UpPre);
   volume5UpPre.connect(volume5Up);
@@ -794,13 +931,12 @@ getSample(hiestOrg, function play(buffer) {
   filter5Up.connect(panner5Up);
   panner5Up.connect(mdelay);
   organ5Up.loop = true;
-  volume5UpPre.gain.value = 0.21;
-
-if("detune" in AudioBufferSourceNode) {
+  volume5UpPre.gain.value = 0.23;
   organ5Up.detune.value = 1200;
 }
-else {}
 });
+
+var xhrs = 0;
 
 function getSample(url, cb) {
   var request = new XMLHttpRequest();
@@ -808,6 +944,16 @@ function getSample(url, cb) {
   request.responseType = 'arraybuffer';
   request.onload = function() {
     audioContext.decodeAudioData(request.response, cb);
+    xhrs++;
+    if (xhrs === 5) {
+      buttr.style.WebkitAnimationPlayState = "running";
+      buttr.style.animationPlayState = "running";
+      bigBar.style.WebkitAnimationPlayState = "paused";
+      bigBar.style.animationPlayState = "paused";
+      circle.style.WebkitAnimationPlayState = "paused";
+      circle.style.animationPlayState = "paused";
+    }
+
   };
   request.send();
 }
@@ -820,6 +966,13 @@ function getSample(url, cb) {
 // 6.856 s = 2m
 // 10.284 s = 3m
 // 13.712 s = 4m
+//
+
+// PERF OPTS
+//
+// move shuffler & randomizer to web worker?
+// re-use startTimes?
+//
 //
 
 var startTimes = [6.856, 0, 13.712, 0, 10.284];
@@ -851,7 +1004,7 @@ rand3 = startTimes[2] / shift;
 rand4 = startTimes[3] / shift;
 rand5 = startTimes[4] / shift;
 
-var del = 0.2;
+var del = 0.1;
 
 var startTime1 = audioContext.currentTime + rand1 + del;
 var startTime2 = audioContext.currentTime + rand2 + del;
@@ -864,10 +1017,17 @@ organ2.playbackRate.value = shift;
 organ3.playbackRate.value = shift;
 organ4.playbackRate.value = shift;
 organ5.playbackRate.value = shift;
+if("detune" in AudioBufferSourceNode) {
 organ5Up.playbackRate.value = shift;
+}
 
 LFO1.frequency.value = 0.0162 * shift;
 LFO2.frequency.value = 0.0209 * shift;
+
+var aniDur = 3.4288 * shift;
+
+bDiv.style.WebkitAnimationDuration = aniDur + "s";
+bDiv.style.animationDuration = aniDur + "s";
 
 // LFO1.frequency.value = 0.073 * shift;
 // LFO2.frequency.value = 0.0365 * shift;
@@ -1056,7 +1216,7 @@ function Freeverb (audioContext) {
 
     masterFilterA.type = "lowshelf";
     masterFilterA.frequency.value = 250;
-    masterFilterA.gain.value = -5;
+    masterFilterA.gain.value = -7;
 
     var mReverb = Freeverb(audioContext);
     masterFilterA.connect(mReverb);
@@ -1064,8 +1224,8 @@ function Freeverb (audioContext) {
 // KEEP ROOMSIZE UNDER 0.8 OR FIREFOX FREAKS OUT
 
     mReverb.roomSize = 0.7;
-    mReverb.dampening = 3500;
-    mReverb.wet.value = 0.1;
+    mReverb.dampening = 4000;
+    mReverb.wet.value = 0.12;
     mReverb.dry.value = 1;
     mReverb.connect(superMasterGain);
 
@@ -1077,6 +1237,7 @@ function Freeverb (audioContext) {
 //
 // BEGIN PLAYBACK CONTROLS
 //
+
 
 var pauseTime = 0;
 var pauseTimeStamp = 0;
@@ -1093,52 +1254,50 @@ function beginOrg() {
   if("detune" in AudioBufferSourceNode) {
     organ5Up.start(startTime5);
   }
-  else {}
 
     dur1 = organ1.buffer.duration;
     dur2 = organ2.buffer.duration;
     dur3 = organ3.buffer.duration;
     dur4 = organ4.buffer.duration;
     dur5 = organ5.buffer.duration;
+
+  // bDiv.style.WebkitAnimationPlayState = "running";
+  // bDiv.style.animationPlayState = "running";
 }
 
 function beginLFO() {
 	LFO1.start(del);
   LFO2.start(del);
-
 }
 
 function stopOrg() {
   var nowTime = audioContext.currentTime;
-  organ1.stop(nowTime + 0.22);
-  organ2.stop(nowTime + 0.22);
-  organ3.stop(nowTime + 0.22);
-  organ4.stop(nowTime + 0.22);
-  organ5.stop(nowTime + 0.22);
+  organ1.stop(nowTime + 0.11);
+  organ2.stop(nowTime + 0.11);
+  organ3.stop(nowTime + 0.11);
+  organ4.stop(nowTime + 0.11);
+  organ5.stop(nowTime + 0.11);
 
   if("detune" in AudioBufferSourceNode) {
-  organ5Up.stop(nowTime + 0.22);
+  organ5Up.stop(nowTime + 0.11);
   }
-  else {}
+
+    // bDiv.style.WebkitAnimationPlayState = "paused";
+    // bDiv.style.animationPlayState = "paused";
+
 }
 
 function tempBuff() {
-
-temp1 = organ1.buffer;
-temp2 = organ2.buffer;
-temp3 = organ3.buffer;
-temp4 = organ4.buffer;
-temp5 = organ5.buffer;
 
 pauseTimeStamp = audioContext.currentTime;
 
 var nowTime = audioContext.currentTime;
 
 //total time actually spent playing music
-totalElapsed = nowTime - pauseTotal;
+var totalElapsed = nowTime - pauseTotal;
 
 // the following will at *least* create an initial
-// delay of "del" (0.2)
+// delay of "del"
 // and it will add any remaining delay from startTimes
 
 newStart1 = startTime1 - totalElapsed;
@@ -1158,11 +1317,11 @@ newStart5 = Math.max(del,newStart5);
 
 // console.log("5:" + newStart5 + "1:" + newStart1);
 
-timesPlayed1 = (totalElapsed - startTime1) / dur1;
-timesPlayed2 = (totalElapsed - startTime2) / dur2;
-timesPlayed3 = (totalElapsed - startTime3) / dur3;
-timesPlayed4 = (totalElapsed - startTime4) / dur4;
-timesPlayed5 = (totalElapsed - startTime5) / dur5;
+var timesPlayed1 = (totalElapsed - startTime1) / dur1;
+var timesPlayed2 = (totalElapsed - startTime2) / dur2;
+var timesPlayed3 = (totalElapsed - startTime3) / dur3;
+var timesPlayed4 = (totalElapsed - startTime4) / dur4;
+var timesPlayed5 = (totalElapsed - startTime5) / dur5;
 
 timesPlayed1 = timesPlayed1 - Math.trunc(timesPlayed1);
 timesPlayed2 = timesPlayed2 - Math.trunc(timesPlayed2);
@@ -1185,6 +1344,7 @@ newOff4 = newOff4 * dur4;
 newOff5 = newOff5 * dur5;
 }
 
+
 function reBuff() {
 
 // calculate the total amount of time spent paused
@@ -1197,35 +1357,45 @@ organ2 = audioContext.createBufferSource();
 organ3 = audioContext.createBufferSource();
 organ4 = audioContext.createBufferSource();
 organ5 = audioContext.createBufferSource();
+if("detune" in AudioBufferSourceNode) {
 organ5Up = audioContext.createBufferSource();
+}
 
   organ1.buffer = temp1;
   organ2.buffer = temp2;
   organ3.buffer = temp3;
   organ4.buffer = temp4;
   organ5.buffer = temp5;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.buffer = temp5;
+}
 
   organ1.loop = true;
   organ2.loop = true;
   organ3.loop = true;
   organ4.loop = true;
   organ5.loop = true;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.loop = true;
+}
 
   organ1.playbackRate.value = shift;
   organ2.playbackRate.value = shift;
   organ3.playbackRate.value = shift;
   organ4.playbackRate.value = shift;
   organ5.playbackRate.value = shift;
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.playbackRate.value = shift;
+}
 
   organ1.connect(filter1);
   organ2.connect(filter2);
   organ3.connect(filter3);
   organ4.connect(filter4);
   organ5.connect(filter5);
+  if("detune" in AudioBufferSourceNode) {
   organ5Up.connect(volume5UpPre);
+}
 
   newStart1 = newStart1 + nowTime;
   newStart2 = newStart2 + nowTime;
@@ -1238,37 +1408,47 @@ organ5Up = audioContext.createBufferSource();
   organ3.start(newStart3, newOff3);
   organ4.start(newStart4, newOff4);
   organ5.start(newStart5, newOff5);
-
   if("detune" in AudioBufferSourceNode) {
-  organ5Up.start(newStart5, newOff5);  }
-  else {}
+  organ5Up.start(newStart5, newOff5);
+}
+
+    // bDiv.style.WebkitAnimationPlayState = "running";
+    // bDiv.style.animationPlayState = "running";
 
 }
 
 
+//
+// toggle button functions
+//
+
+function volUp(nowTime1){
+delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
+masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
+superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+}
+
 var audioInitiated = false;
 var muted = false;
 
-function playIt() {
+function playIt(del, shift, startTime1, startTime2, startTime3, startTime4, startTime5) {
   if (audioInitiated === false) {
     var nowTime1 = audioContext.currentTime;
     beginOrg();
     beginLFO();
-    delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
-    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+    volUp(nowTime1);
     audioInitiated = true;
   } else {
     tog();
   }
 }
 
-function tog() {
+function tog(del, shift) {
   if (muted === false) {
     var nowTime = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
-    masterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
-    superMasterGain.gain.setTargetAtTime(0, nowTime + 0.1, 0.1);
+    delGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
+    masterGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
+    superMasterGain.gain.setTargetAtTime(0, nowTime + 0.05, 0.05);
     muted = true;
     tempBuff();
     stopOrg();
@@ -1276,9 +1456,7 @@ function tog() {
   else {
     reBuff();
     var nowTime1 = audioContext.currentTime;
-    delGain.gain.setTargetAtTime(0.17, nowTime1 + del, 0.12);
-    masterGain.gain.setTargetAtTime(0.7, nowTime1 + del, 0.12);
-    superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+    volUp(nowTime1);
     muted = false;
   }
 }

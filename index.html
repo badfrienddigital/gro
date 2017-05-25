@@ -494,6 +494,7 @@ initial timing for 70bpm (change in js with shift)
     animation-name: pulser;
     animation-iteration-count: infinite;
     animation-direction: forwards;
+    animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation-delay: 3.4288s;
     animation-duration: 3.4288s;
@@ -616,7 +617,9 @@ initial timing for 70bpm (change in js with shift)
             backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform: translateZ(0);
+    opacity: 0;
     animation-name: buttonIn;
+    animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation-duration: 0.75s;
     animation-play-state: paused;
@@ -657,7 +660,7 @@ initial timing for 70bpm (change in js with shift)
   <div class="top" id="top"></div>
   <div class="low" id="low"></div>
   <div class="sure" id="sure"></div>
-  <p class="loader">loading</p>
+  <p class="loader" id="loader">loading</p>
   <input class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
 
 <script src="stereo-panner-node.min.js"></script>
@@ -668,6 +671,7 @@ var bDiv = document.getElementById("sure");
 var buttr = document.getElementById("beginner");
 var bigBar = document.getElementById("top");
 var circle = document.getElementById("low");
+var loader = document.getElementById("loader");
 
 var BrowserDetect = {
 	init: function () {
@@ -952,6 +956,8 @@ function getSample(url, cb) {
       bigBar.style.animationPlayState = "paused";
       circle.style.WebkitAnimationPlayState = "paused";
       circle.style.animationPlayState = "paused";
+      loader.style.opacity = 0;
+      loader.style.visibility = "hidden";
     }
 
   };

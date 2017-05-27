@@ -1116,9 +1116,7 @@ function getSample(url, cb) {
       buttr.style.animationPlayState = "running";
       buttr.onclick = playIt;
       buttr.style.cursor = "pointer";
-      // buttr.setAttribute("role",”button”);
       buttr.setAttribute("aria-hidden",false);
-      // buttr.setAttribute("alt",”ORG”);
 
       bigBar.style.WebkitAnimationPlayState = "paused";
       bigBar.style.animationPlayState = "paused";
@@ -1127,6 +1125,8 @@ function getSample(url, cb) {
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
       loader.setAttribute("aria-hidden",true);
+
+      console.log("Welcome to GRO")
     }
   };
   request.send();

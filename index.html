@@ -852,8 +852,8 @@ to sync with BPM of music
   <div class="top" id="top"></div>
   <div class="low" id="low"></div>
   <div class="sure" id="sure"></div>
-  <p class="loader" id="loader"><span class="downer">l</span><span class="upper">oa</span><span class="downer">d</span><span class="upper">i</span><span class="downer">ng</span></p>
-  <input class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
+  <p aria-label="loading" alt="loading" class="loader" id="loader"><span class="downer">l</span><span class="upper">oa</span><span class="downer">d</span><span class="upper">i</span><span class="downer">ng</span></p>
+  <input aria-hidden="true" role=”presentation” class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
 
 <script src="stereo-panner-node.min.js"></script>
 
@@ -1126,12 +1126,17 @@ function getSample(url, cb) {
       buttr.style.animationPlayState = "running";
       buttr.onclick = playIt;
       buttr.style.cursor = "pointer";
+      buttr.setAttribute("role",”button”);
+      buttr.setAttribute("aria-hidden",false);
+      buttr.setAttribute("alt",”ORG”);
+      
       bigBar.style.WebkitAnimationPlayState = "paused";
       bigBar.style.animationPlayState = "paused";
       circle.style.WebkitAnimationPlayState = "paused";
       circle.style.animationPlayState = "paused";
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
+      loader.setAttribute("aria-hidden",true);
     }
   };
   request.send();

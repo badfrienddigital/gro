@@ -23,11 +23,11 @@ Musical arrangement created with JavaScript and the [Web Audio API](http://terop
 
 JavaScript implementation of the [Schroeder-based "Freeverb"](https://valhalladsp.com/2009/05/30/schroeder-reverbs-the-forgotten-algorithm/) taken from [TONE.js](https://github.com/Tonejs/Tone.js).
 
-[Stereo Panner Polyfill](https://github.com/mohayonao/stereo-panner-node) created by @mohayonao.
+[Stereo Panner Polyfill](https://github.com/mohayonao/stereo-panner-node) created by [@mohayonao](https://github.com/mohayonao).
 
 CSS Normalization pulled from [Tachyons.io](http://tachyons.io).
 
-Inspiration & Advice provided by @tambien, @jakealbaugh, @wizgrav, and @wam.
+Inspiration & Advice provided by [@tambien](https://github.com/tambien), [@jakealbaugh](https://github.com/jakealbaugh), [@wizgrav](https://github.com/wizgrav), and [@wam](https://github.com/wam).
 
 Troubleshooting
 ---------------

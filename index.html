@@ -492,8 +492,8 @@ to sync with BPM of music
     left: 0;
     background-color: #332211;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    /*-webkit-transform: translateZ(0);
+            transform: translateZ(0);*/
     -webkit-animation-name: mover;
             animation-name: mover;
     -webkit-animation-iteration-count: infinite;
@@ -566,71 +566,71 @@ to sync with BPM of music
 
 @-webkit-keyframes mover {
     0% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
     10% {
-        -webkit-transform: translate(0, 25vh);
-                transform: translate(0, 25vh);
+        -webkit-transform: translateY(25vh);
+                transform: translateY(25vh);
     }
     22% {
-        -webkit-transform: translate(0, -2vh);
-                transform: translate(0, -2vh);
+        -webkit-transform: translateY(-2vh);
+                transform: translateY(-2vh);
     }
     28% {
-        -webkit-transform: translate(0, 2vh);
-                transform: translate(0, 2vh);
+        -webkit-transform: translateY(2vh);
+                transform: translateY(2vh);
     }
     34% {
-        -webkit-transform: translate(0, -0.5vh);
-                transform: translate(0, -0.5vh);
+        -webkit-transform: translateY(-0.5vh);
+                transform: translateY(-0.5vh);
     }
     38% {
-        -webkit-transform: translate(0, 0.5vh);
-                transform: translate(0, 0.5vh);
+        -webkit-transform: translateY(0.5vh);
+                transform: translateY(0.5vh);
     }
     42% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
     100% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
 }
 
 @keyframes mover {
     0% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
     10% {
-        -webkit-transform: translate(0, 25vh);
-                transform: translate(0, 25vh);
+        -webkit-transform: translateY(25vh);
+                transform: translateY(25vh);
     }
     22% {
-        -webkit-transform: translate(0, -2vh);
-                transform: translate(0, -2vh);
+        -webkit-transform: translateY(-2vh);
+                transform: translateY(-2vh);
     }
     28% {
-        -webkit-transform: translate(0, 2vh);
-                transform: translate(0, 2vh);
+        -webkit-transform: translateY(2vh);
+                transform: translateY(2vh);
     }
     34% {
-        -webkit-transform: translate(0, -0.5vh);
-                transform: translate(0, -0.5vh);
+        -webkit-transform: translateY(-0.5vh);
+                transform: translateY(-0.5vh);
     }
     38% {
-        -webkit-transform: translate(0, 0.5vh);
-                transform: translate(0, 0.5vh);
+        -webkit-transform: translateY(0.5vh);
+                transform: translateY(0.5vh);
     }
     42% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
     100% {
-        -webkit-transform: translate(0, 0);
-                transform: translate(0, 0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
     }
 }
 
@@ -856,7 +856,7 @@ var buttr = document.getElementById("beginner");
 var bigBar = document.getElementById("top");
 var circle = document.getElementById("low");
 var loader = document.getElementById("loader");
-
+var bodd = loader.parentNode;
 
 // disable playback button until audio is ready
 
@@ -1121,11 +1121,16 @@ function getSample(url, cb) {
 
       bigBar.style.WebkitAnimationPlayState = "paused";
       bigBar.style.animationPlayState = "paused";
+      bigBar.style.animationName = "none";
       circle.style.WebkitAnimationPlayState = "paused";
       circle.style.animationPlayState = "paused";
+      circle.style.animationName = "none";
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
+      loader.style.WebkitAnimationPlayState = "paused";
+      loader.style.animationPlayState = "paused";
       loader.setAttribute("aria-hidden",true);
+      bodd.removeChild(loader);
 
       console.log("Welcome to GRO")
     }

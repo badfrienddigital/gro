@@ -1111,7 +1111,8 @@ function getSample(url, cb) {
     if (xhrs === 5) {
       // if all files retrieved successfully,
       // enable playback button
-      // and pause animations
+      // pause animations
+      // and remove loading animation element altogether
 
       buttr.style.WebkitAnimationPlayState = "running";
       buttr.style.animationPlayState = "running";

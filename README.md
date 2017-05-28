@@ -1,7 +1,7 @@
 GRO
 ---
 
-GRO is a dynamic musical composition for web browsers. 
+[GRO](https://badfrienddigital.github.io/gro) is a dynamic musical composition for web browsers. 
 
 Five audio loops of differing lengths are stacked together to create an effect similar to [Phasing](https://en.wikipedia.org/wiki/Phase_music) or [Euclidean Rhythm](https://en.wikipedia.org/wiki/Euclidean_rhythm).
 

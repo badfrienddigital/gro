@@ -461,14 +461,10 @@ to sync with BPM of music
     position: absolute;
     -webkit-transform: rotate(50deg);
             transform: rotate(50deg);
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
     left: -100vw;
     top: -100vh;
     opacity: 0.75;
     overflow: hidden;
-            backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     -webkit-animation-name: rotator;
             animation-name: rotator;
     -webkit-animation-fill-mode: forwards;
@@ -492,11 +488,9 @@ to sync with BPM of music
     left: 0;
     background-color: #332211;
     overflow: hidden;
-    /*-webkit-transform: translateZ(0);
-            transform: translateZ(0);*/
-    -webkit-animation-name: mover;
-            animation-name: mover;
-    -webkit-animation-iteration-count: infinite;
+    /*-webkit-animation-name: mover;
+            animation-name: mover;*/
+    /*-webkit-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
     -webkit-animation-direction: normal;
             animation-direction: normal;
@@ -507,7 +501,7 @@ to sync with BPM of music
     -webkit-animation-delay: 1.714s;
             animation-delay: 1.714s;
     -webkit-animation-duration: 3.4288s;
-            animation-duration: 3.4288s;
+            animation-duration: 3.4288s;*/
 }
 
 /**
@@ -524,11 +518,11 @@ to sync with BPM of music
     left: 55vw;
     background-color: #997777;
     overflow: hidden;
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-    -webkit-animation-name: pulser;
-            animation-name: pulser;
-    -webkit-animation-iteration-count: infinite;
+    /*-webkit-transform: translateZ(0);
+            transform: translateZ(0);*/
+    /*-webkit-animation-name: pulser;
+            animation-name: pulser;*/
+    /*-webkit-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
     -webkit-animation-direction: normal;
             animation-direction: normal;
@@ -539,7 +533,7 @@ to sync with BPM of music
     -webkit-animation-delay: 3.4288s;
             animation-delay: 3.4288s;
     -webkit-animation-duration: 3.4288s;
-            animation-duration: 3.4288s;
+            animation-duration: 3.4288s;*/
 }
 
 @-webkit-keyframes rotator {
@@ -755,10 +749,6 @@ to sync with BPM of music
         -ms-user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-            backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
     opacity: 0;
     -webkit-animation-name: buttonIn;
             animation-name: buttonIn;
@@ -853,8 +843,6 @@ to sync with BPM of music
 
 var bDiv = document.getElementById("sure");
 var buttr = document.getElementById("beginner");
-var bigBar = document.getElementById("top");
-var circle = document.getElementById("low");
 var loader = document.getElementById("loader");
 var bodd = loader.parentNode;
 
@@ -1119,10 +1107,6 @@ function getSample(url, cb) {
       buttr.onclick = playIt;
       buttr.style.cursor = "pointer";
       buttr.setAttribute("aria-hidden",false);
-      bigBar.style.WebkitAnimationPlayState = "paused";
-      bigBar.style.animationPlayState = "paused";
-      circle.style.WebkitAnimationPlayState = "paused";
-      circle.style.animationPlayState = "paused";
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
       loader.style.WebkitAnimationPlayState = "paused";
@@ -1242,14 +1226,6 @@ LFO2.frequency.value = 0.0208 * shift;
 
   bDiv.style.WebkitAnimationDuration = aniDur1 + "s";
   bDiv.style.animationDuration = aniDur1 + "s";
-  bigBar.style.WebkitAnimationDuration = (aniDur2 * 2) + "s";
-  bigBar.style.animationDuration = (aniDur2 * 2) + "s";
-  bigBar.style.WebkitAnimationDelay = aniDur1 + "s";
-  bigBar.style.animationDelay = aniDur1 + "s";
-  circle.style.WebkitAnimationDuration = aniDur2 + "s";
-  circle.style.animationDuration = aniDur2 + "s";
-  circle.style.WebkitAnimationDelay = aniDur2 + "s";
-  circle.style.animationDelay = aniDur2 + "s";
 }(shift));
 
 

@@ -28,6 +28,10 @@
     <title>GRO</title>
     <meta name="description" content="Musical Composition For Web Browsers">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta property="og:title" content="GRO" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://badfrienddigital.github.io/gro" />
+    <meta property="og:image" content="https://badfrienddigital.github.io/gro/fav/android-chrome-256x256.png" />
 
 </head>
 
@@ -1016,6 +1020,20 @@ function getSample(url, cb) {
       loader.setAttribute("aria-hidden",true);
       bodd.removeChild(loader);
 
+      // register service worker
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      }
+
+
+
       console.log("Welcome to GRO")
     }
   };
@@ -1599,6 +1617,8 @@ function tog(del, shift) {
         if (audioInitiated === true && muted === false) {
           tog();}
         });
+
+
 
 </script>
 

@@ -488,20 +488,7 @@ to sync with BPM of music
     left: 0;
     background-color: #332211;
     overflow: hidden;
-    /*-webkit-animation-name: mover;
-            animation-name: mover;*/
-    /*-webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    -webkit-animation-direction: normal;
-            animation-direction: normal;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    -webkit-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
-    -webkit-animation-delay: 1.714s;
-            animation-delay: 1.714s;
-    -webkit-animation-duration: 3.4288s;
-            animation-duration: 3.4288s;*/
+
 }
 
 /**
@@ -518,22 +505,7 @@ to sync with BPM of music
     left: 55vw;
     background-color: #997777;
     overflow: hidden;
-    /*-webkit-transform: translateZ(0);
-            transform: translateZ(0);*/
-    /*-webkit-animation-name: pulser;
-            animation-name: pulser;*/
-    /*-webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    -webkit-animation-direction: normal;
-            animation-direction: normal;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    -webkit-animation-timing-function: ease;
-            animation-timing-function: ease;
-    -webkit-animation-delay: 3.4288s;
-            animation-delay: 3.4288s;
-    -webkit-animation-duration: 3.4288s;
-            animation-duration: 3.4288s;*/
+
 }
 
 @-webkit-keyframes rotator {
@@ -558,155 +530,65 @@ to sync with BPM of music
     }
 }
 
-@-webkit-keyframes mover {
-    0% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-    10% {
-        -webkit-transform: translateY(25vh);
-                transform: translateY(25vh);
-    }
-    22% {
-        -webkit-transform: translateY(-2vh);
-                transform: translateY(-2vh);
-    }
-    28% {
-        -webkit-transform: translateY(2vh);
-                transform: translateY(2vh);
-    }
-    34% {
-        -webkit-transform: translateY(-0.5vh);
-                transform: translateY(-0.5vh);
-    }
-    38% {
-        -webkit-transform: translateY(0.5vh);
-                transform: translateY(0.5vh);
-    }
-    42% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-    100% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-}
-
-@keyframes mover {
-    0% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-    10% {
-        -webkit-transform: translateY(25vh);
-                transform: translateY(25vh);
-    }
-    22% {
-        -webkit-transform: translateY(-2vh);
-                transform: translateY(-2vh);
-    }
-    28% {
-        -webkit-transform: translateY(2vh);
-                transform: translateY(2vh);
-    }
-    34% {
-        -webkit-transform: translateY(-0.5vh);
-                transform: translateY(-0.5vh);
-    }
-    38% {
-        -webkit-transform: translateY(0.5vh);
-                transform: translateY(0.5vh);
-    }
-    42% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-    100% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-}
-
-@-webkit-keyframes pulser {
-    0%, 40%, 100% {
-        -webkit-transform: scale(1, 1);
-                transform: scale(1, 1);
-    }
-    20% {
-        -webkit-transform: scale(1.25, 1.25);
-                transform: scale(1.25, 1.25);
-    }
-}
-
-@keyframes pulser {
-    0%, 40%, 100% {
-        -webkit-transform: scale(1, 1);
-                transform: scale(1, 1);
-    }
-    20% {
-        -webkit-transform: scale(1.25, 1.25);
-                transform: scale(1.25, 1.25);
-    }
-}
 
 @-webkit-keyframes upper {
-    0%, 100% {
-        -webkit-transform: translateY(0ex);
-                transform: translateY(0ex);
-    }
-    33% {
-        -webkit-transform: translateY(-0.15ex);
-                transform: translateY(-0.15ex);
-    }
-    66% {
-        -webkit-transform: translateY(0.15ex);
-                transform: translateY(0.15ex);
-    }
+  0%, 50%, 100% {
+      -webkit-transform: translateY(0ex);
+              transform: translateY(0ex);
+  }
+  25% {
+      -webkit-transform: translateY(-0.2ex);
+              transform: translateY(-0.2ex);
+  }
+  75% {
+      -webkit-transform: translateY(0.2ex);
+              transform: translateY(0.2ex);
+  }
 }
 
 @keyframes upper {
-    0%, 100% {
+    0%, 50%, 100% {
         -webkit-transform: translateY(0ex);
                 transform: translateY(0ex);
     }
-    33% {
-        -webkit-transform: translateY(-0.15ex);
-                transform: translateY(-0.15ex);
+    25% {
+        -webkit-transform: translateY(-0.2ex);
+                transform: translateY(-0.2ex);
     }
-    66% {
-        -webkit-transform: translateY(0.15ex);
-                transform: translateY(0.15ex);
+    75% {
+        -webkit-transform: translateY(0.2ex);
+                transform: translateY(0.2ex);
     }
 }
 
 @-webkit-keyframes downer {
-    0%, 100% {
+    0%, 50%, 100% {
         -webkit-transform: translateY(0ex);
                 transform: translateY(0ex);
     }
-    33% {
-        -webkit-transform: translateY(0.15ex);
-                transform: translateY(0.15ex);
+    25% {
+        -webkit-transform: translateY(0.2ex);
+                transform: translateY(0.2ex);
     }
-    66% {
-        -webkit-transform: translateY(-0.15ex);
-                transform: translateY(-0.15ex);
+    75% {
+        -webkit-transform: translateY(-0.2ex);
+                transform: translateY(-0.2ex);
     }
 }
 
 @keyframes downer {
-    0%, 100% {
+    0%, 50%, 100% {
         -webkit-transform: translateY(0ex);
                 transform: translateY(0ex);
     }
-    33% {
-        -webkit-transform: translateY(0.15ex);
-                transform: translateY(0.15ex);
+    25% {
+        -webkit-transform: translateY(0.2ex);
+                transform: translateY(0.2ex);
+
     }
-    66% {
-        -webkit-transform: translateY(-0.15ex);
-                transform: translateY(-0.15ex);
+    75% {
+        -webkit-transform: translateY(-0.2ex);
+                transform: translateY(-0.2ex);
     }
 }
 
@@ -797,6 +679,7 @@ to sync with BPM of music
 
 /**
 * "upper" and "lower" control the animation of the "loading" letters;
+*  durations modified in javascript to sync with tempo
 */
 
 .upper {
@@ -809,8 +692,8 @@ to sync with BPM of music
             animation-fill-mode: forwards;
     -webkit-animation-timing-function: ease-in;
             animation-timing-function: ease-in;
-    -webkit-animation-duration: 15s;
-            animation-duration: 15s;
+    -webkit-animation-duration: 5s;
+            animation-duration: 5s;
 }
 
 .downer {
@@ -823,8 +706,8 @@ to sync with BPM of music
             animation-fill-mode: forwards;
     -webkit-animation-timing-function: ease-out;
             animation-timing-function: ease-out;
-    -webkit-animation-duration: 15s;
-            animation-duration: 15s;
+    -webkit-animation-duration: 5s;
+            animation-duration: 5s;
 }
 
 </style>
@@ -833,7 +716,7 @@ to sync with BPM of music
   <div class="top" id="top"></div>
   <div class="low" id="low"></div>
   <div class="sure" id="sure"></div>
-  <p aria-label="loading" alt="loading" class="loader" id="loader"><span class="downer">l</span><span class="upper">oa</span><span class="downer">d</span><span class="upper">i</span><span class="downer">ng</span></p>
+  <p aria-label="loading" alt="loading" class="loader" id="loader"><span class="downer" id="x4">l</span><span class="upper" id="x3">oa</span><span class="downer" id="x2b">d</span><span class="upper" id="x2a">i</span><span class="downer" id="x1">ng</span></p>
   <input aria-hidden="true" class="button" id="beginner" type="button" value="ORG" onclick="playIt()" />
 
 <script src="stereo-panner-node.min.js"></script>
@@ -920,20 +803,20 @@ filter1.type = "lowpass";
 filter1.frequency.value = 1200;
 
 filter2.type = "lowpass";
-filter2.frequency.value = 1200;
+filter2.frequency.value = 1450;
 
 filter3.type = "highpass";
-filter3.frequency.value = 200;
+filter3.frequency.value = 300;
 
 filter4.type = "highpass";
 filter4.frequency.value = 350;
 
 filter5.type = "highpass";
-filter5.frequency.value = 400;
+filter5.frequency.value = 450;
 
 if("detune" in AudioBufferSourceNode) {
   filter5Up.type = "lowpass";
-  filter5Up.frequency.value = 2200;
+  filter5Up.frequency.value = 3500;
   }
 
 
@@ -994,14 +877,14 @@ if("detune" in AudioBufferSourceNode) {
 // provide both 41k and 48k samplerate files;
 // serve based on device's samplerate
 
-var lowOrg = 'audio/organ-low-2m-48.mp4';
+var lowOrg = 'audio/organ-low-2m-48-b.mp4';
 var medOrg = 'audio/organ-med-8m-48.mp4';
 var hiOrg = 'audio/organ-hi-7m-48.mp4';
 var hierOrg = 'audio/organ-hi-er-9m-48.mp4';
 var hiestOrg = 'audio/organ-hi-est-6m-48.mp4';
 
  if (audioContext.sampleRate === 44100) {
-   lowOrg = 'audio/organ-low-2m.mp4';
+   lowOrg = 'audio/organ-low-2m-b.mp4';
    medOrg = 'audio/organ-med-8m.mp4';
    hiOrg = 'audio/organ-hi-7m.mp4';
    hierOrg = 'audio/organ-hi-er-9m.mp4';
@@ -1020,7 +903,7 @@ getSample(lowOrg, function play(buffer) {
   filter1.connect(volume1);
   volume1.connect(masterGain);
   organ1.loop = true;
-  volume1.gain.value = 0.75;
+  volume1.gain.value = 0.8;
 
 });
 
@@ -1032,7 +915,7 @@ getSample(medOrg, function play(buffer) {
   volume2.connect(panner2);
   panner2.connect(masterGain);
   organ2.loop = true;
-  volume2.gain.value = 0.8;
+  volume2.gain.value = 0.84;
 
 });
 
@@ -1044,7 +927,7 @@ getSample(hiOrg, function play(buffer) {
   volume3.connect(panner3);
   panner3.connect(masterGain);
   organ3.loop = true;
-  volume3.gain.value = 0.75;
+  volume3.gain.value = 0.78;
 
 });
 
@@ -1056,7 +939,7 @@ getSample(hierOrg, function play(buffer) {
   volume4.connect(panner4);
   panner4.connect(masterGain);
   organ4.loop = true;
-  volume4.gain.value = 0.7;
+  volume4.gain.value = 0.72;
 });
 
 getSample(hiestOrg, function play(buffer) {
@@ -1067,7 +950,7 @@ getSample(hiestOrg, function play(buffer) {
   volume5.connect(panner5);
   panner5.connect(masterGain);
   organ5.loop = true;
-  volume5.gain.value = 0.75;
+  volume5.gain.value = 0.72;
 
 // if possible,
 // loop #5 is played by TWO nodes;
@@ -1096,6 +979,25 @@ function getSample(url, cb) {
   request.onload = function() {
     audioContext.decodeAudioData(request.response, cb);
     xhrs++;
+    if (xhrs === 1) {
+      var x1 = document.getElementById("x1");
+      x1.style.color = "#CCBBAA";
+    }
+    if (xhrs === 2) {
+      var x2a = document.getElementById("x2a");
+      var x2b = document.getElementById("x2b");
+      x2a.style.color = "#CCBBAA";
+      x2b.style.color = "#CCBBAA";
+    }
+    if (xhrs === 3) {
+      var x3 = document.getElementById("x3");
+      x3.style.color = "#CCBBAA";
+    }
+    if (xhrs === 4) {
+      var x4 = document.getElementById("x4");
+      x4.style.color = "#CCBBAA";
+    }
+
     if (xhrs === 5) {
       // if all files retrieved successfully,
       // enable playback button
@@ -1226,6 +1128,9 @@ LFO2.frequency.value = 0.0208 * shift;
 
   bDiv.style.WebkitAnimationDuration = aniDur1 + "s";
   bDiv.style.animationDuration = aniDur1 + "s";
+  loader.style.WebkitAnimationDuration = aniDur2 + "s";
+  loader.style.animationDuration = aniDur2 + "s";
+
 }(shift));
 
 
@@ -1385,7 +1290,7 @@ function Freeverb (audioContext) {
 
 //
 // Master Effects
-// (0 values are modified at run time)
+// 0 values are modified at run time w/ volUp();
 //
 
 var superMasterGain = audioContext.createGain();
@@ -1651,9 +1556,9 @@ function reBuff() {
 //
 
 function volUp(nowTime1){
-  delGain.gain.setTargetAtTime(0.18, nowTime1 + del, 0.12);
-  masterGain.gain.setTargetAtTime(0.8, nowTime1 + del, 0.12);
-  superMasterGain.gain.setTargetAtTime(0.85, nowTime1 + del, 0.12);
+  delGain.gain.setTargetAtTime(0.2, nowTime1 + del, 0.12);
+  masterGain.gain.setTargetAtTime(0.95, nowTime1 + del, 0.12);
+  superMasterGain.gain.setTargetAtTime(0.95, nowTime1 + del, 0.12);
 }
 
 var audioInitiated = false;

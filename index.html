@@ -1682,24 +1682,24 @@ function tog(del, shift) {
     } else if ('applicationCache' in window) {
         if (audioContext.sampleRate === 44100) {
         // append appCache manifest location to <html> tag
-        // document.documentElement.manifest = "ios.appcache";
+         document.documentElement.manifest = "ios.appcache";
 
-        // use iframe hack to manage future appCache updates
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = 'load-appcache.html'
-        document.body.appendChild(iframe);
-        console.log("iframe loaded for AppCache management");
+        // iframe hack to manage future appCache updates
+        // var iframe = document.createElement('iframe');
+        // iframe.style.display = 'none';
+        // iframe.src = 'load-appcache.html'
+        // document.body.appendChild(iframe);
+        // console.log("iframe loaded for AppCache management");
         } else {
           // append appCache manifest location to <html> tag
-          // document.documentElement.manifest = "ios48.appcache";
+           document.documentElement.manifest = "ios48.appcache";
 
-          // use iframe hack to manage future appCache updates
-          var iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.src = 'load-appcache48.html'
-          document.body.appendChild(iframe);
-          console.log("iframe loaded for AppCache (48k) management");
+          // iframe hack to manage future appCache updates
+          // var iframe = document.createElement('iframe');
+          // iframe.style.display = 'none';
+          // iframe.src = 'load-appcache48.html'
+          // document.body.appendChild(iframe);
+          // console.log("iframe loaded for AppCache (48k) management");
         }
 
     } else {

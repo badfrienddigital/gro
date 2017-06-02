@@ -13,11 +13,11 @@ this.addEventListener('install', function(event) {
         '/favicon.ico',
         '/stereo-panner-node.min.js',
         '/manifest.json',
-        'audio/organ-low-2m-b.mp4',
-        'audio/organ-med-8m.mp4',
-        'audio/organ-hi-7m.mp4',
-        'audio/organ-hi-er-9m.mp4',
-        'audio/organ-hi-est-6m.mp4'
+        'audio/organ-low-2m-48-b.mp4',
+        'audio/organ-med-8m-48.mp4',
+        'audio/organ-hi-7m-48.mp4',
+        'audio/organ-hi-er-9m-48.mp4',
+        'audio/organ-hi-est-6m-48.mp4'
       ]);
     })
     .then(function() {

@@ -2,9 +2,8 @@
 
 
 <!--
-"GRO" is a musical composition for web browsers by Soft Punch.
+"GRO" is a musical composition for web browsers.
 -->
-
 
 
 <html lang="en">
@@ -16,6 +15,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="GRO">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-starturl" content="/">
 
     <link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
@@ -977,68 +978,106 @@ if("detune" in AudioBufferSourceNode) {
 var xhrs = 0;
 
 function getSample(url, cb) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.responseType = 'arraybuffer';
-  request.onload = function() {
-    audioContext.decodeAudioData(request.response, cb);
-    xhrs++;
-    if (xhrs === 1) {
-      var x1 = document.getElementById("x1");
-      x1.style.color = "#CCBBAA";
+
+// if possible, use the Fetch API,
+// so that a serviceWorker can cache the page
+
+  if("fetch" in window) {
+  fetch(url).then(function(response) {
+  return response.arrayBuffer()
+}).then(function(arrayBuffer) {
+  audioContext.decodeAudioData(arrayBuffer, cb);
+  xhrs++;
+  // for each asset loaded, update the loader animation
+  if (xhrs === 1) {
+    var x1 = document.getElementById("x1");
+    x1.style.color = "#CCBBAA";
+  }
+  if (xhrs === 2) {
+    var x2a = document.getElementById("x2a");
+    var x2b = document.getElementById("x2b");
+    x2a.style.color = "#CCBBAA";
+    x2b.style.color = "#CCBBAA";
+  }
+  if (xhrs === 3) {
+    var x3 = document.getElementById("x3");
+    x3.style.color = "#CCBBAA";
+  }
+  if (xhrs === 4) {
+    var x4 = document.getElementById("x4");
+    x4.style.color = "#CCBBAA";
+  }
+  if (xhrs === 5) {
+    // if all files retrieved successfully,
+    // enable playback button
+    // pause animations
+    // and remove loading animation element altogether
+    buttr.style.WebkitAnimationPlayState = "running";
+    buttr.style.animationPlayState = "running";
+    buttr.onclick = playIt;
+    buttr.style.cursor = "pointer";
+    buttr.setAttribute("aria-hidden",false);
+    loader.style.opacity = 0;
+    loader.style.visibility = "hidden";
+    loader.style.WebkitAnimationPlayState = "paused";
+    loader.style.animationPlayState = "paused";
+    loader.setAttribute("aria-hidden",true);
+    bodd.removeChild(loader);
     }
-    if (xhrs === 2) {
-      var x2a = document.getElementById("x2a");
-      var x2b = document.getElementById("x2b");
-      x2a.style.color = "#CCBBAA";
-      x2b.style.color = "#CCBBAA";
-    }
-    if (xhrs === 3) {
-      var x3 = document.getElementById("x3");
-      x3.style.color = "#CCBBAA";
-    }
-    if (xhrs === 4) {
-      var x4 = document.getElementById("x4");
-      x4.style.color = "#CCBBAA";
-    }
-
-    if (xhrs === 5) {
-      // if all files retrieved successfully,
-      // enable playback button
-      // pause animations
-      // and remove loading animation element altogether
-
-      buttr.style.WebkitAnimationPlayState = "running";
-      buttr.style.animationPlayState = "running";
-      buttr.onclick = playIt;
-      buttr.style.cursor = "pointer";
-      buttr.setAttribute("aria-hidden",false);
-      loader.style.opacity = 0;
-      loader.style.visibility = "hidden";
-      loader.style.WebkitAnimationPlayState = "paused";
-      loader.style.animationPlayState = "paused";
-      loader.setAttribute("aria-hidden",true);
-      bodd.removeChild(loader);
-
-      // register service worker
-
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(function(registration) {
-          // Registration was successful
-          // console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed :(
-          // console.log('ServiceWorker registration failed: ', err);
-        });
-      }
-
-
-
-      console.log("Welcome to GRO")
-    }
-  };
-  request.send();
+});
 }
+
+  else {
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'arraybuffer';
+    request.onload = function() {
+      audioContext.decodeAudioData(request.response, cb);
+      xhrs++;
+
+      // for each asset loaded, update the loader animation
+      if (xhrs === 1) {
+        var x1 = document.getElementById("x1");
+        x1.style.color = "#CCBBAA";
+      }
+      if (xhrs === 2) {
+        var x2a = document.getElementById("x2a");
+        var x2b = document.getElementById("x2b");
+        x2a.style.color = "#CCBBAA";
+        x2b.style.color = "#CCBBAA";
+      }
+      if (xhrs === 3) {
+        var x3 = document.getElementById("x3");
+        x3.style.color = "#CCBBAA";
+      }
+      if (xhrs === 4) {
+        var x4 = document.getElementById("x4");
+        x4.style.color = "#CCBBAA";
+      }
+      if (xhrs === 5) {
+        // if all files retrieved successfully,
+        // enable playback button
+        // pause animations
+        // and remove loading animation element altogether
+
+        buttr.style.WebkitAnimationPlayState = "running";
+        buttr.style.animationPlayState = "running";
+        buttr.onclick = playIt;
+        buttr.style.cursor = "pointer";
+        buttr.setAttribute("aria-hidden",false);
+        loader.style.opacity = 0;
+        loader.style.visibility = "hidden";
+        loader.style.WebkitAnimationPlayState = "paused";
+        loader.style.animationPlayState = "paused";
+        loader.setAttribute("aria-hidden",true);
+        bodd.removeChild(loader);
+      }
+      console.log("Welcome to GRO");
+    }
+    request.send();
+  };
+}
+
 
 //
 // original tempo is 70 BPM
@@ -1611,13 +1650,49 @@ function tog(del, shift) {
   }
 }
 
-// pause when user leaves the page
+
+// pause playback when user leaves the page
 
     document.addEventListener("visibilitychange", function(del, shift) {
         if (audioInitiated === true && muted === false) {
           tog();}
         });
 
+
+//
+// if possible, register a service worker to cache assets for offline use;
+// use the correct service worker cache for the device's audio sampleRate.
+// if service workers are not available (Safari), use AppCache.
+//
+
+    if ('serviceWorker' in navigator && (typeof Cache !== 'undefined' && Cache.prototype.addAll) && ("fetch" in window) ) {
+
+      if (audioContext.sampleRate === 44100) {
+        navigator.serviceWorker.register('sw.js').then(function(registration) {
+        }, function(err) {
+        console.log('ServiceWorker sw registration failed: ', err);
+        });
+      } else {
+        navigator.serviceWorker.register('sw48.js').then(function(registration) {
+        }, function(err) {
+        console.log('ServiceWorker sw48 registration failed: ', err);
+        });
+      }
+
+    } else if ('applicationCache' in window) {
+      // append appCache manifest location to <html> tag
+      document.documentElement.manifest = "ios.appcache";
+
+      // use iframe hack to manage future appCache updates
+      var iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'load-appcache.html'
+      document.body.appendChild(iframe);
+      console.log("iframe loaded for AppCache management");
+
+    } else {
+      console.log("no caching method available");
+    }
 
 
 </script>

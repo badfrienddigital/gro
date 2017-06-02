@@ -7,14 +7,14 @@ NETWORK:
 *
 
 CACHE:
-/
-/index.html
-/favicon.ico
-/stereo-panner-node.min.js
-/manifest.json
-/load-appcache.html
-/audio/organ-low-2m-48-b.mp4
-/audio/organ-med-8m-48.mp4
-/audio/organ-hi-7m-48.mp4
-/audio/organ-hi-er-9m-48.mp4
-/audio/organ-hi-est-6m-48.mp4
+
+index.html
+favicon.ico
+stereo-panner-node.min.js
+manifest.json
+load-appcache.html
+audio/organ-low-2m-48-b.mp4
+audio/organ-med-8m-48.mp4
+audio/organ-hi-7m-48.mp4
+audio/organ-hi-er-9m-48.mp4
+audio/organ-hi-est-6m-48.mp4

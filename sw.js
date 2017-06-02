@@ -8,11 +8,10 @@ this.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('gro v' + version).then(function(cache) {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/favicon.ico',
-        '/stereo-panner-node.min.js',
-        '/manifest.json',
+        'index.html',
+        'favicon.ico',
+        'stereo-panner-node.min.js',
+        'manifest.json',
         'audio/organ-low-2m-b.mp4',
         'audio/organ-med-8m.mp4',
         'audio/organ-hi-7m.mp4',

@@ -20,5 +20,8 @@
     ],
     "theme_color": "#CCBBAA",
     "background_color": "#997777",
-    "display": "standalone"
+    "display": "standalone",
+    "scope": "/gro/",
+    "start_url": "/gro/index.html",
+    ​​"orientation": "portrait"
 }
